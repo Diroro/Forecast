@@ -1,0 +1,15 @@
+<div *ngIf='location'>
+{{location.city}}, {{location.country}}
+</div>
+<app-location (changeLocation)='handleChangeLocation($event)'></app-location>
+
+<!--it's hidden until the city has been got  -->
+<app-weather *ngIf='isWeatherLoaded'></app-weather> 
+<!--it's hidden until the city has been got  -->
+<app-forecast *ngIf='isWeatherLoaded'></app-forecast>
+
+<!-- location component should return the City object into main component, 
+what should be used to request a weather.
+
+The weather component should use city object and may be more parameters
+for showing the current weather using weather API-->

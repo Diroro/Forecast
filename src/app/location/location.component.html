@@ -1,0 +1,9 @@
+<div class='current-Location'>
+</div>
+<div class='change-Location'>
+    <button class='change-Location-mode' (click) = 'changeEditMode()'>Change Location</button>
+    <!--only if change mod is on  -->
+    <app-autocomplete *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>
+
+    </app-autocomplete>
+</div>
