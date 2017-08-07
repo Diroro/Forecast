@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Headers, Http, Jsonp, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 
@@ -75,23 +75,22 @@ export class WeatherService {
     private url = 'https://api.darksky.net/forecast';
     private key = 'd4ffe57bcc8981eddc567d513733ee34';
 
-    constructor(private http: Http) { }
+    constructor(private jsonp: Jsonp) { }
 
     public getCurrentAndDailyWether(lat, lng): Promise<any> {
         // // let opt: RequestOptions = {headers:[{'Origin': 'http://localhost'}], method:'PUT'}
-        let headers = new Headers({
-            'Origin': 'localhost:3000',
-            'Accept': 'application/json',
-            'Accept-Language': 'en'
-        }
-        );
-        let options = new RequestOptions({ headers: headers });
+        // let headers = new Headers({
+        //     Cookie: 'units=si; latlon=55.75%2C37.6166; _ga=GA1.2.1762134973.1501663161; _gid=GA1.2.1040199553.1501663161'
+        // }
+        // );
+        // let options = new RequestOptions({ headers: headers });
 
         // let options = {'Origin': 'http://localhost'}
-        return this.http
+        console.log("starting");
+        return this.jsonp
             .get(this.url + '/' + this.key + '/'
             + lat + ',' + lng +
-            '?units=si&exclude=minutely,hourly,alerts,flags'/*&callback=jsonp_1501758901349_60062', { headers: headers } */)
+            '?units=si&exclude=minutely,hourly,alerts,flags&callback=JSONP_CALLBACK')
             .toPromise()
             .then((response: any) =>
                 response.json() as CurrentAndDailyWeather

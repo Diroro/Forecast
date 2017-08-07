@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input, Output, OnDestroy, ElementRef, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, OnDestroy, ElementRef, EventEmitter, NgZone } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -9,55 +9,42 @@ import { Subscription } from 'rxjs/Subscription';
     // host: { '(document:click)': 'handleClick($event)' }
 })
 export class AutocompleteComponent implements OnInit {
-    // public query = '';
-    // public countries = ["Albania", "Andorra", "Armenia", "Austria", "Azerbaijan", "Belarus",
-    //     "Belgium", "Bosnia & Herzegovina", "Bulgaria", "Croatia", "Cyprus",
-    //     "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia",
-    //     "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Kosovo",
-    //     "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Malta",
-    //     "Moldova", "Monaco", "Montenegro", "Netherlands", "Norway", "Poland",
-    //     "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia",
-    //     "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom", "Vatican City"];
-    // public filteredList = [];
-    // public elementRef;
-    public address='';
-    public location ={
+    public address = '';
+    public location = {
         city: '',
         country: '',
         lat: '',
         lng: ''
     }
-    constructor(myElement: ElementRef) {
-        // this.elementRef = myElement;
+    constructor(myElement: ElementRef, private zone: NgZone) {
     }
     ngOnInit() {
     }
 
     @Output() setLocation = new EventEmitter();
 
-    getAddress(a){
-        console.log('Address',a);
-        // console.log('Location: ');
-        // console.log(this.location);
-        
+    getAddress(a) {
+        console.log('Address', a);
+
     }
-    getCity(a){
-        this.location.city=a;
+    getCity(a) {
+        this.location.city = a;
         console.log(this.location);
-        
+
     }
-    getCountry(a){
-        this.location.country=a;
+    getCountry(a) {
+        this.location.country = a;
         console.log(this.location);
     }
-    getLat(a){
-         this.location.lat=a;
-         console.log(this.location);
+    getLat(a) {
+        this.location.lat = a;
+        console.log(this.location);
     }
-    getLng(a){
-         this.location.lng=a;
-          console.log(this.location);
-         this.setLocation.emit(this.location);
+    getLng(a) {
+        this.location.lng = a;
+        console.log('Location is ready!');
+        console.log(this.location);
+        this.zone.run(() => this.setLocation.emit(this.location))
     }
 
 }

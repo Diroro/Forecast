@@ -1,0 +1,29 @@
+
+/* You can add global styles to this file, and also import other style files */
+*{
+   
+	box-sizing: border-box;
+	margin: 0;
+    padding: 0;
+    border: 1px solid black;
+    background-color: transparent;
+}
+.block{
+    width: 400px;
+    margin:auto;
+    border: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+button{
+    display:block;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 5px;
+   
+}
+button:focus{
+   outline:none;
+}

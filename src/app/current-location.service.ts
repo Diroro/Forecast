@@ -4,7 +4,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class CurrentLocationService {
 
-    private url = 'http://freegeoip.net/json/';
+    private url = 'https://freegeoip.net/json/';
     constructor(private http: Http) { }
 
     getCurrentLocation(): Promise<any> {
