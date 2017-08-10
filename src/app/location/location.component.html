@@ -1,4 +1,4 @@
-<div class='block'>
+<div class='location-container'>
     <div *ngIf='location' class='current-location'>
         {{location.city}}, {{location.country}}
     </div>
@@ -6,9 +6,6 @@
     <button class='change-Location-mode' (click)='changeEditMode()'>Change Location</button>
     <button *ngIf='isLocationChanged' class='back-to-current' (click)='loadCurrentLocation()'>Back to current Location</button>
     <!--only if change mod is on  -->
-
-
     <app-autocomplete *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>
     </app-autocomplete>
-
 </div>

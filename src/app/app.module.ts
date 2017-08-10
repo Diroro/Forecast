@@ -12,6 +12,7 @@ import { ForecastComponent } from './forecast/forecast.component';
 import { MainComponent } from './main/main.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { GooglePlaceModule } from 'ng2-google-place-autocomplete';
+import { IconComponent } from './icon/icon.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { GooglePlaceModule } from 'ng2-google-place-autocomplete';
         WeatherComponent,
         ForecastComponent,
         MainComponent,
-        AutocompleteComponent
+        AutocompleteComponent,
+        IconComponent
     ],
     imports: [
         BrowserModule,

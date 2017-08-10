@@ -1,21 +1,54 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-forecast',
-  templateUrl: './forecast.component.html',
-  styleUrls: ['./forecast.component.css']
+    selector: 'app-forecast',
+    templateUrl: './forecast.component.html',
+    styleUrls: ['./forecast.component.css']
 })
 export class ForecastComponent implements OnInit {
-
+    forecast = [];
     @Input() dailyForecast;
-  constructor() { }
+    constructor() { }
+    iconSize = 'small';
+    ngOnInit() {
 
-  ngOnInit() {
-         console.log('Daily Forecast:');
-        console.log(this.dailyForecast);
-  }
 
+        this.dailyForecast.data.map((item) => {
+            let windBearing = item.windBearing || -1;
+            let windBearingString = windBearing < 0 ? '' :
+                windBearing < 23 ? '🡳' :
+                windBearing < 68 ? '🡷' :
+                windBearing < 113 ? '🡰' :
+                windBearing < 158 ? '🡴' :
+                windBearing < 203 ? '🡱' :
+                windBearing < 248 ? '🡵' :
+                windBearing < 293 ? '🡲' :
+                windBearing < 338 ? '🡶' :
+                                    '🡳';
+
+            let date = new Date(item.time * 1000);
+
+            let day = {
+                time: date.toDateString().slice(0, 10),
+                temperatureMax: Math.round(item.temperatureMax),
+                temperatureMin: Math.round(item.temperatureMin),
+                pressure: Math.round(item.pressure * 0.75),
+                summary: item.summary,
+                icon: item.icon,
+                precipProbability: item.precipProbability,
+                windBearing: windBearingString,
+                windSpeed: Math.round(item.windSpeed)
+            }
+            this.forecast.push(day);
+        });
+
+        console.log('Daily Forecast:');
+        console.log(this.forecast);
+
+    }
 }
+
+
 
 
 // apparentTemperature

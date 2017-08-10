@@ -1,0 +1,19 @@
+.block{
+    width: 100%;
+    text-align: center;
+}
+
+.info{
+  
+    vertical-align: middle;
+    color: white;
+}
+.info-large{
+      font-size: 40px;
+}
+.info-small{
+    font-size: 20px;
+}
+.info-very-large{
+ font-size: 60px;
+}

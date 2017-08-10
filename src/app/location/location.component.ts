@@ -3,12 +3,14 @@ import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@ang
 
 @Component({
     selector: 'app-location',
-    templateUrl: './location.component.html',
-    // template:` `,
+     templateUrl: './location.component.html',
+//     template: ` 
+      
+// `,
     styleUrls: ['./location.component.css'],
-//     host: {
-//         '(document:click)': 'clickOutside()'
-//     }
+    //     host: {
+    //         '(document:click)': 'clickOutside()'
+    //     }
 })
 export class LocationComponent implements OnInit {
     isEditModeOn = false;
@@ -17,8 +19,8 @@ export class LocationComponent implements OnInit {
     constructor(private cls: CurrentLocationService) {
 
     }
-    clickOutside(){
-       if(this.isEditModeOn){this.isEditModeOn=false;}
+    clickOutside() {
+        if (this.isEditModeOn) { this.isEditModeOn = false; }
     }
     @Output() changeLocation = new EventEmitter();
     ngOnInit() {
@@ -33,7 +35,7 @@ export class LocationComponent implements OnInit {
         this.cls.getCurrentLocation().then((location: any) => {
             this.location = location;
             this.changeLocation.emit(location);
-            this.isLocationChanged=false;
+            this.isLocationChanged = false;
         })
     }
 

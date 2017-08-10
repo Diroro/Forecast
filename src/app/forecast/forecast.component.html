@@ -1,3 +1,35 @@
-<p>
-  forecast works!
-</p>
+<table>
+    <thead>
+        <th class='table-header'>Day</th>
+        <th class='table-header'>Weather</th>
+        <th class='table-header'>Temp. max</th>
+        <th class='table-header'>Temp. min</th>
+        <th class='table-header'>Precip prob. %</th>
+        <th class='table-header'>Wind Bearing</th>
+        <th class='table-header'>Wind Speed</th>
+    </thead>
+    <tr *ngFor='let day of forecast' class='table-row row'>
+        <td class='cell'>
+            {{day.time}}
+        </td>
+        <td class='cell'>
+            <app-icon [size]='iconSize' [icon]='day.icon'></app-icon>
+        </td>
+        <td class='cell'>
+            {{day.temperatureMax}} &deg; C
+        </td>
+        <td class='cell'>
+            {{day.temperatureMin}} &deg; C
+        </td>
+        <td class='cell'>
+            {{day.precipProbability}} %
+        </td>
+        <td class='cell'>
+            {{day.windBearing}}
+        </td>
+        <td class='cell'>
+            {{day.windSpeed}} m/s
+        </td>
+
+    </tr>
+</table>
