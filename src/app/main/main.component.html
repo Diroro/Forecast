@@ -2,11 +2,11 @@
     Weather Forecast
 </header>
 <app-location  (changeLocation)='handleChangeLocation($event)'></app-location>
-<div class='section-container'>
-    <div class='section weather'>
+<div class='weather'>
+    <div class='weather__section'>
         <app-weather [currentWeather]='weather.currently' *ngIf='isWeatherLoaded'></app-weather>
     </div>
-    <div class='section'>
+    <div class='weather__section'>
         <app-forecast [dailyForecast]='weather.daily' *ngIf='isWeatherLoaded'></app-forecast>
     </div>
 </div>

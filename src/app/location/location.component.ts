@@ -19,6 +19,12 @@ export class LocationComponent implements OnInit {
         this.loadCurrentLocation();
     }
 
+    editModeOff(){
+        if (!this.isEditModeOn){
+
+        this.isEditModeOn=false;
+        }
+    }
     changeEditMode() {
         this.isEditModeOn = !this.isEditModeOn;
     }

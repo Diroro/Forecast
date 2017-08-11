@@ -64,6 +64,11 @@ var LocationComponent = (function () {
     LocationComponent.prototype.ngOnInit = function () {
         this.loadCurrentLocation();
     };
+    LocationComponent.prototype.editModeOff = function () {
+        if (!this.isEditModeOn) {
+            this.isEditModeOn = false;
+        }
+    };
     LocationComponent.prototype.changeEditMode = function () {
         this.isEditModeOn = !this.isEditModeOn;
     };
@@ -276,7 +281,7 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, "\r\n*{\r\n   \r\n\tbox-sizing: border-box;\r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.wrapper{    \r\n    display: inline-block;\r\n    width: 100%;\r\n    min-height: 100%; \r\n    min-width: 450px;\r\n    position: relative;\r\n    padding-bottom: 55px;\r\n     overflow-y:hidden;\r\n     vertical-align: middle;\r\n}\r\n\r\n", ""]);
+exports.push([module.i, "\r\n*{\r\n   \r\n\tbox-sizing: border-box;\r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.wrapper{    \r\n    display: inline-block;\r\n    width: 100%;\r\n    min-height: 100%; \r\n    min-width: 450px;\r\n    position: relative;\r\n    padding-bottom: 55px;\r\n     overflow-y:hidden;\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -312,7 +317,7 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, "\r\n.table{\r\n   width: 100%;\r\n   border:none;\r\n \r\n}\r\n.table-row{\r\n    padding: 10px;\r\n}\r\n\r\n tr:nth-child(odd){\r\n   \r\n    background-color: rgba(0,0,0,0.2)\r\n}\r\ntr:nth-child(even) , thead{\r\n    background-color: rgba(0,0,0,0.4)\r\n  \r\n}\r\n\r\n.cell{\r\n    padding: 5px;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.table-header{\r\n    font-size: 14px;\r\n  \r\n} \r\n", ""]);
+exports.push([module.i, "\r\n.table{\r\n   width: 100%;\r\n   border:none;\r\n \r\n}\r\n.table-row{\r\n    padding: 10px;\r\n}\r\n\r\n tr:nth-child(odd){\r\n   \r\n    background-color: rgba(0,0,0,0.1)\r\n}\r\ntr:nth-child(even) , thead{\r\n    background-color: rgba(0,0,0,0.3)\r\n  \r\n}\r\n\r\n.cell{\r\n    padding: 5px;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.table-header{\r\n    font-size: 14px;\r\n  \r\n} \r\n", ""]);
 
 // exports
 
@@ -348,7 +353,7 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, ".loading{\r\n  \r\n    position:fixed;\r\n    top:0;\r\n    left:0;\r\n    height:100%;\r\n    width: 100%;\r\n    z-index: 999;\r\n    background-color: rgba(0,0,0,0.70);\r\n    \r\n}\r\nspan{\r\n    display: inline-block;\r\n      color: white;\r\n    font-size: 40px;\r\n    width: 100%;\r\n    text-align: center;\r\n    font-family: 'PT Sans', sans-serif;\r\n    margin-top: 200px;\r\n}", ""]);
+exports.push([module.i, ".loading{\r\n  \r\n    position:fixed;\r\n    top:0;\r\n    left:0;\r\n    height:100%;\r\n    width: 100%;\r\n    z-index: 999;\r\n    background-color: rgba(0,0,0,0.70);\r\n    \r\n}\r\nspan{\r\n    display: inline-block;\r\n    color: white;\r\n    font-size: 40px;\r\n    width: 100%;\r\n    text-align: center;\r\n    font-family: 'PT Sans', sans-serif;\r\n    margin-top: 200px;\r\n}", ""]);
 
 // exports
 
@@ -366,7 +371,7 @@ exports = module.exports = __webpack_require__(7)();
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=PT+Sans);", ""]);
 
 // module
-exports.push([module.i, "*{\r\n   \r\n\tbox-sizing: border-box;\r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\n.location-container{\r\n    width: 100%;\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n    -webkit-box-align: center;\r\n        -ms-flex-align: center;\r\n            align-items: center;\r\n    padding: 10px;\r\n    font-family: 'PT Sans', sans-serif;\r\n}\r\n.current-location{\r\n    font-size: 36px;\r\n\r\n}\r\n\r\n.location-item{\r\n     color: white;\r\n     margin: 5px;\r\n    line-height: 30px;\r\n}\r\nbutton{\r\n    display:block;\r\n    background: transparent;\r\n    border:0;\r\n    /* border: 1px solid black;\r\n    border-radius: 5px; */\r\n    font-size: 20px;\r\n    padding: 0 5px;\r\n}\r\nbutton:hover{\r\n    text-decoration: underline;\r\n}\r\nbutton:focus{\r\n   outline:none;\r\n}", ""]);
+exports.push([module.i, "*{\r\n   \r\n\tbox-sizing: border-box;\r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\n.location-container{\r\n    width: 100%;\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n    -webkit-box-align: center;\r\n        -ms-flex-align: center;\r\n            align-items: center;\r\n    padding: 10px;\r\n    font-family: 'PT Sans', sans-serif;\r\n}\r\n.current-location{\r\n    font-size: 36px;\r\n\r\n}\r\n\r\n.location-item{\r\n     color: white;\r\n     margin: 5px;\r\n    line-height: 30px;\r\n}\r\n.inline{\r\n    display: inline-block;\r\n    color: white;\r\n}\r\nbutton{\r\n    display:block;\r\n    background: transparent;\r\n    border:0 none;\r\n    font-size: 20px;\r\n    padding: 0 5px;\r\n}\r\nbutton:hover{\r\n    text-decoration: underline;\r\n}\r\nbutton:focus{\r\n   outline:none;\r\n}", ""]);
 
 // exports
 
@@ -384,7 +389,7 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, "\r\n* {\r\n\tbox-sizing: border-box;\r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\nheader{\r\n    color: white;\r\n    font-size:20px;\r\n    margin-top: 10px;\r\n}\r\nfooter{\r\n    position:absolute;\r\n    bottom: 0;\r\n    height:50px;\r\n    border-color: rgba(0, 0, 0, 0);\r\n}\r\n.footer-img{\r\n    background: rgba(0,0,0,0) url(" + __webpack_require__(198) + ")  center center / auto 50px;\r\n    height: 50px;\r\n    width:200px;\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n}\r\n.block {\r\n    font-family: 'PT Sans', sans-serif;\r\n\twidth: 100%;\r\n    text-align: center;\r\n}\r\n.section{\r\n    border: 1px solid rgba(255,255,255,0.5);\r\n    border-radius: 5px;\r\n    margin: 5px;\r\n    min-width:400px;\r\n    font-family: 'PT Sans', sans-serif;\r\n}\r\n.weather{\r\n    background-color: rgba(0,0,0,0.2)\r\n}\r\n.section-container{\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n    \r\n  \r\n}\r\n@media screen and (max-width: 860px){ \r\n   .section-container{\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n     -webkit-box-align: stretch;\r\n         -ms-flex-align: stretch;\r\n             align-items: stretch;\r\n  \r\n}\r\n } \r\n   @media screen and (min-width: 860px) { \r\n    .section{\r\n        width:50%;\r\n    }\r\n} \r\n\r\n", ""]);
+exports.push([module.i, "\r\n* {\r\n    box-sizing: border-box; \r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\nheader{\r\n    color: white;\r\n    font-size:20px;\r\n    margin-top: 10px;\r\n}\r\nfooter{\r\n    position:absolute;\r\n    bottom: 0;\r\n    height:50px;\r\n    border-color: rgba(0, 0, 0, 0);\r\n}\r\n.footer-img{\r\n    background: rgba(0,0,0,0) url(" + __webpack_require__(198) + ")  center center / auto 50px;\r\n    height: 50px;\r\n    width:200px;\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n}\r\n.block {\r\n    font-family: 'PT Sans', sans-serif;\r\n\twidth: 100%;\r\n    text-align: center;\r\n}\r\n.weather__section{\r\n    border: 1px solid rgba(255,255,255,0.5); \r\n     border-radius: 5px;  \r\n    margin: 5px;\r\n    min-width:400px;\r\n    font-family: 'PT Sans', sans-serif;\r\n    background-color: rgba(0,0,0,0.2);\r\n}\r\n.weather{\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n    \r\n  \r\n}\r\n@media screen and (max-width: 860px){ \r\n   .weather{\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n     -webkit-box-align: stretch;\r\n         -ms-flex-align: stretch;\r\n             align-items: stretch;\r\n  \r\n}\r\n } \r\n   @media screen and (min-width: 860px) { \r\n    .weather__section{\r\n        width:50%;\r\n    }\r\n} \r\n\r\n", ""]);
 
 // exports
 
@@ -422,7 +427,7 @@ module.exports = "<div [ngStyle]=\"{'background':background}\" class='wrapper'>\
 /***/ 167:
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<input type=\"text\"\r\n    [options]=\"{types: ['(cities)']}\"\r\n   (setAddress) = \"getAddress($event)\"\r\n    (city)= 'getCity($event)'\r\n    (country)='getCountry($event)'\r\n    (lat)='getLat($event)' \r\n    (lng)='getLng($event)'\r\n    id=\"autocomplete\"\r\n ng2-google-place-autocomplete/> "
+module.exports = "\r\n<input   type=\"text\"\r\n    [options]=\"{types: ['(cities)']}\"\r\n   (setAddress) = \"getAddress($event)\"\r\n    (city)= 'getCity($event)'\r\n    (country)='getCountry($event)'\r\n    (lat)='getLat($event)' \r\n    (lng)='getLng($event)'\r\n    id=\"autocomplete\"\r\n ng2-google-place-autocomplete/> "
 
 /***/ }),
 
@@ -450,14 +455,14 @@ module.exports = "<div class='loading'>\n    <span>Loading...</span>\n</div>"
 /***/ 171:
 /***/ (function(module, exports) {
 
-module.exports = "<div class='location-container'>\r\n    <div *ngIf='location' class='location-item current-location '>\r\n        {{location.city}}, {{location.country}}\r\n    </div>\r\n    <button class='location-item' *ngIf='isLocationChanged' (click)='loadCurrentLocation()'>Back to current Location</button>\r\n\r\n    <button class='location-item' *ngIf='!isEditModeOn' (click)='changeEditMode()'>Change Location</button>\r\n    <app-autocomplete class='location-item' *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>\r\n    </app-autocomplete>\r\n</div>"
+module.exports = "<div class='location-container'>\r\n    <div *ngIf='location' class='location-item current-location '>\r\n        {{location.city}}, {{location.country}}\r\n    </div>\r\n    <button class='location-item' *ngIf='isLocationChanged' (click)='loadCurrentLocation()'>Back to current Location</button>\r\n    <div class ='location-item'>\r\n    <button class='inline'(click)='changeEditMode()'>Change Location</button>\r\n    <app-autocomplete class='inline' *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>\r\n    </app-autocomplete>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
 /***/ 172:
 /***/ (function(module, exports) {
 
-module.exports = "<header class='block'>\r\n    Weather Forecast\r\n</header>\r\n<app-location  (changeLocation)='handleChangeLocation($event)'></app-location>\r\n<div class='section-container'>\r\n    <div class='section weather'>\r\n        <app-weather [currentWeather]='weather.currently' *ngIf='isWeatherLoaded'></app-weather>\r\n    </div>\r\n    <div class='section'>\r\n        <app-forecast [dailyForecast]='weather.daily' *ngIf='isWeatherLoaded'></app-forecast>\r\n    </div>\r\n</div>\r\n<footer class='block'>\r\n    <a href=\"https://darksky.net/poweredby/\" target=\"_blank\">\r\n        <div class='footer-img'></div>\r\n    </a>\r\n</footer>\r\n <div *ngIf=\"!isWeatherLoaded\">\r\n<app-loading ></app-loading>\r\n</div> "
+module.exports = "<header class='block'>\r\n    Weather Forecast\r\n</header>\r\n<app-location  (changeLocation)='handleChangeLocation($event)'></app-location>\r\n<div class='weather'>\r\n    <div class='weather__section'>\r\n        <app-weather [currentWeather]='weather.currently' *ngIf='isWeatherLoaded'></app-weather>\r\n    </div>\r\n    <div class='weather__section'>\r\n        <app-forecast [dailyForecast]='weather.daily' *ngIf='isWeatherLoaded'></app-forecast>\r\n    </div>\r\n</div>\r\n<footer class='block'>\r\n    <a href=\"https://darksky.net/poweredby/\" target=\"_blank\">\r\n        <div class='footer-img'></div>\r\n    </a>\r\n</footer>\r\n <div *ngIf=\"!isWeatherLoaded\">\r\n<app-loading ></app-loading>\r\n</div> "
 
 /***/ }),
 

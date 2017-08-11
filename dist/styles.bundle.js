@@ -8,7 +8,7 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n*{\r\n   \r\n\tbox-sizing: border-box;\r\n\r\n}\r\nhtml,body { \r\n    width: 100%;\r\n    height: 100%;\r\n    padding:0;\r\n    margin:0;\r\n}", ""]);
+exports.push([module.i, "*{\r\n    padding:0;\r\n    margin: 0;\r\n\tbox-sizing: border-box;\r\n\r\n}\r\nhtml,body { \r\n    width: 100%;\r\n    height: 100%;\r\n    padding:0;\r\n    margin:0;\r\n}", ""]);
 
 // exports
 
