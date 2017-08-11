@@ -7,13 +7,13 @@
 }
 
 .wrapper{    
-    /* position: absolute; */
-    /* overflow: hidden; */
+    display: inline-block;
+    width: 100%;
     min-height: 100%; 
     min-width: 450px;
-    background-color: lightseagreen;
     position: relative;
     padding-bottom: 55px;
      overflow-y:hidden;
+     vertical-align: middle;
 }
 

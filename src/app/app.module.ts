@@ -13,6 +13,7 @@ import { MainComponent } from './main/main.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { GooglePlaceModule } from 'ng2-google-place-autocomplete';
 import { IconComponent } from './icon/icon.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { IconComponent } from './icon/icon.component';
         ForecastComponent,
         MainComponent,
         AutocompleteComponent,
-        IconComponent
+        IconComponent,
+        LoadingComponent
     ],
     imports: [
         BrowserModule,

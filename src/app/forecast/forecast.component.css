@@ -1,29 +1,28 @@
 
-table{
+.table{
    width: 100%;
    border:none;
+ 
 }
 .table-row{
     padding: 10px;
 }
 
-tr:nth-child(odd){
-    background-color: rgba(255,255,255,0.4);
- 
+ tr:nth-child(odd){
+   
+    background-color: rgba(0,0,0,0.2)
 }
-tr:nth-child(even){
-    background-color: rgba(255,255,255,0.2);
+tr:nth-child(even) , thead{
+    background-color: rgba(0,0,0,0.4)
   
 }
 
-/* .cell{
-    display: inline-block;
-} */
 .cell{
     padding: 5px;
+    text-align: center;
+    color: white;
 }
 .table-header{
     font-size: 14px;
-    padding: 5px;
-    background-color: rgba(255,255,255,0.2);
-}
+  
+} 

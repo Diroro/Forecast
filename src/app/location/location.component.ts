@@ -3,14 +3,9 @@ import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@ang
 
 @Component({
     selector: 'app-location',
-     templateUrl: './location.component.html',
-//     template: ` 
-      
-// `,
+    templateUrl: './location.component.html',
     styleUrls: ['./location.component.css'],
-    //     host: {
-    //         '(document:click)': 'clickOutside()'
-    //     }
+
 })
 export class LocationComponent implements OnInit {
     isEditModeOn = false;
@@ -18,9 +13,6 @@ export class LocationComponent implements OnInit {
     isLocationChanged = false;
     constructor(private cls: CurrentLocationService) {
 
-    }
-    clickOutside() {
-        if (this.isEditModeOn) { this.isEditModeOn = false; }
     }
     @Output() changeLocation = new EventEmitter();
     ngOnInit() {
@@ -37,6 +29,7 @@ export class LocationComponent implements OnInit {
             this.changeLocation.emit(location);
             this.isLocationChanged = false;
         })
+        .catch(this.handleError);
     }
 
     handleChangingLocation(Location) {
@@ -44,5 +37,8 @@ export class LocationComponent implements OnInit {
         this.changeLocation.emit(Location);
         this.changeEditMode();
         this.isLocationChanged = true;
+    }
+    handleError(e):any{
+        return e;
     }
 }

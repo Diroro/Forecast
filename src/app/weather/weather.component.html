@@ -1,0 +1,19 @@
+<div class='block'>
+    <p class='info info-small'>
+        TODAY
+    </p>
+    <app-icon [size]='iconSize' [icon]='weather.icon'></app-icon>
+    <span class='info info-very-large'>  {{weather.summary}}</span>
+</div>
+<div class='block'>
+    <div class='info info-very-large'>
+        {{weather.temperature}}&deg; С
+    </div>
+</div>
+<div class='info info-large block'>
+    {{weather.pressure}} mm Hg
+
+</div>
+<div class='info info-large block'>
+    {{weather.windSpeed}} m/s {{weather.windBearing}}
+</div>

@@ -1,5 +1,4 @@
-
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
 *{
    
 	box-sizing: border-box;
@@ -13,19 +12,29 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    font-family: 'PT Sans', sans-serif;
 }
 .current-location{
-    color: white;
     font-size: 36px;
+
+}
+
+.location-item{
+     color: white;
+     margin: 5px;
+    line-height: 30px;
 }
 button{
     display:block;
     background: transparent;
-    border: 1px solid black;
-    border-radius: 5px;
+    border:0;
+    /* border: 1px solid black;
+    border-radius: 5px; */
     font-size: 20px;
     padding: 0 5px;
-   
+}
+button:hover{
+    text-decoration: underline;
 }
 button:focus{
    outline:none;
