@@ -12,17 +12,18 @@ export class WeatherComponent implements OnInit {
     weather;
     constructor() { }
     ngOnInit() {
-        let windBearing = this.currentWeather.windBearing || -1;
-        let windBearingString = windBearing < 0 ? '' :
-            windBearing < 23 ? '🡳' :
-                windBearing < 68 ? '🡷' :
-                    windBearing < 113 ? '🡰' :
-                        windBearing < 158 ? '🡴' :
-                            windBearing < 203 ? '🡱' :
-                                windBearing < 248 ? '🡵' :
-                                    windBearing < 293 ? '🡲' :
-                                        windBearing < 338 ? '🡶' :
-                                            '🡳'
+         let windBearing = this.currentWeather.windBearing || -1;
+            let windBearingString = windBearing < 0 ? '' :
+                windBearing < 23  ? 'N' :
+                windBearing < 68  ? 'NE' :
+                windBearing < 113 ? 'E':
+                windBearing < 158 ? 'SE' :
+                windBearing < 203 ? 'S' :
+                windBearing < 248 ? 'SW' :
+                windBearing < 293 ? 'W' :
+                windBearing < 338 ? 'NW' :
+                                    'N';
+     
         this.weather = {
             temperature: Math.round(this.currentWeather.temperature),
             icon: this.currentWeather.icon,
@@ -31,9 +32,7 @@ export class WeatherComponent implements OnInit {
             windBearing: windBearingString,
             windSpeed: Math.round(this.currentWeather.windSpeed),
             pressure: Math.round(this.currentWeather.pressure * 0.75)
-
         }
-
     }
 }
 

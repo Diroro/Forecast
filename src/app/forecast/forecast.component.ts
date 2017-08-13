@@ -16,15 +16,15 @@ export class ForecastComponent implements OnInit {
         this.dailyForecast.data.map((item) => {
             let windBearing = item.windBearing || -1;
             let windBearingString = windBearing < 0 ? '' :
-                windBearing < 23  ? '🡳' :
-                windBearing < 68  ? '🡷' :
-                windBearing < 113 ? '🡰' :
-                windBearing < 158 ? '🡴' :
-                windBearing < 203 ? '🡱' :
-                windBearing < 248 ? '🡵' :
-                windBearing < 293 ? '🡲' :
-                windBearing < 338 ? '🡶' :
-                                    '🡳';
+                windBearing < 23  ? 'N' :
+                windBearing < 68  ? 'NE' :
+                windBearing < 113 ? 'E':
+                windBearing < 158 ? 'SE' :
+                windBearing < 203 ? 'S' :
+                windBearing < 248 ? 'SW' :
+                windBearing < 293 ? 'W' :
+                windBearing < 338 ? 'NW' :
+                                    'N';
 
             let date = new Date(item.time * 1000);
 
