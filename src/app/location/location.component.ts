@@ -1,5 +1,5 @@
 import { CurrentLocationService } from './../current-location.service';
-import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 
 @Component({
     selector: 'app-location',
@@ -9,14 +9,14 @@ import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@ang
 })
 export class LocationComponent implements OnInit {
     isEditModeOn = false;
-    location: Object;
-    isLocationChanged = false;
-    constructor(private cls: CurrentLocationService) {
+    // location: Object;
+    constructor() {
 
     }
     @Output() changeLocation = new EventEmitter();
+    @Input() isLocationChanged: boolean;
     ngOnInit() {
-        this.loadCurrentLocation();
+        // this.loadCurrentLocation();
     }
 
     editModeOff(){
@@ -30,17 +30,12 @@ export class LocationComponent implements OnInit {
     }
 
     loadCurrentLocation() {
-        this.cls.getCurrentLocation().then((location: any) => {
-            this.location = location;
-            this.changeLocation.emit(location);
-            this.isLocationChanged = false;
-        })
-        .catch(this.handleError);
+            let currentLocation = { city: 'Current', country: 'Location', lat:'', lng:''} // TYPE LOCATION, or may be const 
+            this.changeLocation.emit(currentLocation);
     }
 
-    handleChangingLocation(Location) {
-        this.location = Location;
-        this.changeLocation.emit(Location);
+    handleChangingLocation(location) {
+        this.changeLocation.emit(location);
         this.changeEditMode();
         this.isLocationChanged = true;
     }

@@ -7,12 +7,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ForecastComponent implements OnInit {
     forecast = [];
-    @Input() dailyForecast;
-    constructor() { }
     iconSize = 'small';
+    @Input() dailyForecast;
+
+    constructor() { }
     ngOnInit() {
-
-
         this.dailyForecast.data.map((item) => {
             let windBearing = item.windBearing || -1;
             let windBearingString = windBearing < 0 ? '' :
@@ -25,9 +24,7 @@ export class ForecastComponent implements OnInit {
                 windBearing < 293 ? 'W' :
                 windBearing < 338 ? 'NW' :
                                     'N';
-
             let date = new Date(item.time * 1000);
-
             let day = {
                 time: date.toDateString().slice(0, 10),
                 temperatureMax: Math.round(item.temperatureMax),
@@ -35,15 +32,12 @@ export class ForecastComponent implements OnInit {
                 pressure: Math.round(item.pressure * 0.75),
                 summary: item.summary,
                 icon: item.icon,
-                precipProbability: item.precipProbability,
+                precipProbability: Math.round(item.precipProbability*100),
                 windBearing: windBearingString,
                 windSpeed: Math.round(item.windSpeed)
             }
             this.forecast.push(day);
         });
-
-        console.log('Daily Forecast:');
-        console.log(this.forecast);
 
     }
 }

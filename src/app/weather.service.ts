@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Jsonp, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+// import 'rxjs/add/operator/map';
+
 
 
 class CurrentlyDataPointObject {
@@ -69,6 +71,14 @@ class CurrentAndDailyWeather {
     currently: CurrentlyDataPointObject;
     daily: DailyDataBlockObject;
 }
+
+class CurrentWeather {
+    latitude: number;
+    longitude: number;
+    timezone: string;
+    offset: number;
+    currently: CurrentlyDataPointObject;
+}
 @Injectable()
 export class WeatherService {
 
@@ -77,19 +87,9 @@ export class WeatherService {
 
     constructor(private jsonp: Jsonp) { }
 
-    public getCurrentAndDailyWether(lat, lng): Promise<any> {
-        // // let opt: RequestOptions = {headers:[{'Origin': 'http://localhost'}], method:'PUT'}
-        // let headers = new Headers({
-        //     Cookie: 'units=si; latlon=55.75%2C37.6166; _ga=GA1.2.1762134973.1501663161; _gid=GA1.2.1040199553.1501663161'
-        // }
-        // );
-        // let options = new RequestOptions({ headers: headers });
-
-        // let options = {'Origin': 'http://localhost'}
-        console.log("starting");
+    public getCurrentAndDailyWether(lat, lng): Promise<CurrentAndDailyWeather> {
         return this.jsonp
-            .get(this.url + '/' + this.key + '/'
-            + lat + ',' + lng +
+            .get(this.url + '/' + this.key + '/' + lat + ',' + lng +
             '?units=si&exclude=minutely,hourly,alerts,flags&callback=JSONP_CALLBACK')
             .toPromise()
             .then((response: any) =>
@@ -98,6 +98,21 @@ export class WeatherService {
             .catch(this.handleError);
     }
 
+    getCurrentWeather(lat, lng): Promise<CurrentWeather> {
+        return this.jsonp
+            .get(this.url + '/' + this.key + '/' + lat + ',' + lng +
+            '?units=si&exclude=daily,minutely,hourly,alerts,flags&callback=JSONP_CALLBACK')
+            .toPromise()
+            .then((response: any) =>
+                response.json()
+            )
+            .catch(this.handleError);
+    }
+
+    getCurrentWeatherForList(list:Array<any>) {
+        return Promise.all(list.map((location)=>this.getCurrentWeather(location.lat,location.lng).then(weather=>weather.currently)));
+      
+    }
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);

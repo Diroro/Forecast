@@ -1,13 +1,30 @@
 <header class='block'>
     Weather Forecast
 </header>
-<app-location  (changeLocation)='handleChangeLocation($event)'></app-location>
+<div *ngIf='state.location' class='app__current-location block'>
+    {{state.location.city}}, {{state.location.country}}
+</div>
+
+<app-location 
+    [isLocationChanged]='state.isLocationChanged' 
+    (changeLocation)='handleNewLocation($event)'></app-location>
+<div class='app__location-storage section'>
+    <div class='location-storage__header' (click)='toggleLocationsList()'>Locations Storage, ({{state.locationsList.data.length}}/7)</div>
+    <app-locations-list *ngIf='state.isLocationsListOpened && state.locationsList' 
+        (setCurrentLocation)='handleLocationFromStorage($event)' 
+        (getLocationsList)='getLocationsList()'
+        [weatherList]='state.weatherList'
+        [currentLocation]='state.location'
+        [locationsList]='state.locationsList'>
+    </app-locations-list>
+</div>
+
 <div class='weather'>
-    <div class='weather__section'>
-        <app-weather [currentWeather]='weather.currently' *ngIf='isWeatherLoaded'></app-weather>
+    <div class='weather__section section'>
+        <app-weather *ngIf='state.isWeatherLoaded' [currentWeather]='state.weather.currently' ></app-weather>
     </div>
-    <div class='weather__section'>
-        <app-forecast [dailyForecast]='weather.daily' *ngIf='isWeatherLoaded'></app-forecast>
+    <div class='weather__section section'>
+        <app-forecast   *ngIf='state.isWeatherLoaded' [dailyForecast]='state.weather.daily'></app-forecast>
     </div>
 </div>
 <footer class='block'>
@@ -15,6 +32,10 @@
         <div class='footer-img'></div>
     </a>
 </footer>
- <div *ngIf="!isWeatherLoaded">
-<app-loading ></app-loading>
-</div> 
+<div *ngIf="state.isLoadingShown">
+    <app-loading></app-loading>
+</div>
+<div class = "app__error-message" *ngIf="state.error.message">
+    {{this.state.error.message}}
+    <button class="error-message__btn" (click)='actionOnError()'>{{this.state.error.actionBtnText}}</button>
+</div>

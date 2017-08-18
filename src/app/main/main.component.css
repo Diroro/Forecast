@@ -22,29 +22,42 @@ footer{
     display: inline-block;
     vertical-align: middle;
 }
+.app__current-location{
+    font-size:40px;
+}
 .block {
     font-family: 'PT Sans', sans-serif;
 	width: 100%;
     text-align: center;
+    color: white;
 }
-.weather__section{
+.section{
     border: 1px solid rgba(255,255,255,0.5); 
-     border-radius: 5px;  
+    border-radius: 5px;  
     margin: 5px;
     min-width:400px;
     font-family: 'PT Sans', sans-serif;
     background-color: rgba(0,0,0,0.2);
 }
+.weather__section,.app__location-storage{
+  
+}
 .weather{
     display:flex;
     justify-content: space-between;
-    
-  
+}
+
+.app__location-storage{
+    color:white;
+    text-align: center;
+}
+.location-storage__header{
+    padding:5px;
 }
 @media screen and (max-width: 860px){ 
    .weather{
     flex-direction: column;
-     align-items: stretch;
+    align-items: stretch;
   
 }
  } 
@@ -54,3 +67,19 @@ footer{
     }
 } 
 
+.app__error-message{
+    position: fixed;
+    top:0;
+    width:100%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-family: 'PT Sans', sans-serif;
+}
+.error-message__btn{
+    font-size:20px;
+    border: none;
+    padding: 2px 5px;
+
+}

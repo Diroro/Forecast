@@ -11,14 +11,10 @@ iconSize: string;
 iconName: string;
   constructor() { }
     @Input() size: string; // small/large
-    // @Input() backgroundColor: string;
     @Input() icon: string;
   ngOnInit() {
-    //   this.bgColor=this.backgroundColor;
       this.iconSize=this.size;
       this.iconName=this.icon;
-
-      console.log(this.iconName+'-'+this.iconSize);
   }
 
 }

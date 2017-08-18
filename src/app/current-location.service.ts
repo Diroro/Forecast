@@ -6,6 +6,7 @@ export class CurrentLocationService {
 
     private url = 'https://freegeoip.net/json/';
     constructor(private http: Http) { }
+    private googleApiKey='AIzaSyCqG7y5llTsyfBpPppRZQt7O1mJmpCeXQ8';
 
     getCurrentLocation(): Promise<any> {
         return this.http
@@ -19,9 +20,10 @@ export class CurrentLocationService {
                     lat: resp.latitude,
                     lng: resp.longitude
                 };
-            })    
+            })
             .catch(this.handleError);
     }
 
+  
     handleError() { };
 }

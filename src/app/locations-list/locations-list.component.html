@@ -1,2 +1,37 @@
-  <div>d
-  </div>
+
+<table class='table'>
+    <thead>
+        <th class='table-header cell'>City</th>
+        <th class='table-header cell'>Country</th>
+        <th class='table-header cell'>Weather</th>
+        <th class='table-header cell'>Temp.</th>
+    </thead>
+    <tbody>
+        <tr *ngFor='let location of locationsList.data; let i=index;' 
+           
+            [class.selected]="areObjectsEqual(location,currentLocation)" 
+            (click)='chooseLocation(location)'
+            class='table-row row'>
+
+            <td class='cell'>
+                {{location.city}}
+            </td>
+            <td class='cell'>
+                {{location.country}}
+            </td>
+            <td class='cell'>
+                 <div *ngIf="list[i]"> <app-icon [size]='iconSize' [icon]='list[i].icon'></app-icon> </div>
+            </td>
+            <td class='cell'>
+                 <div *ngIf="list[i]"> {{list[i].temperature}}&deg; C </div>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+<div class='button' (click)='saveLocation()'>
+    +
+</div>
+<div class='button' (click)='deleteLocation()'>
+    -
+</div>
