@@ -1,5 +1,4 @@
 .loading{
-  
     position:fixed;
     top:0;
     left:0;
@@ -9,7 +8,7 @@
     background-color: rgba(0,0,0,0.70);
     
 }
-span{
+.loading__message{
     display: inline-block;
     color: white;
     font-size: 40px;

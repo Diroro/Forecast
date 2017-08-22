@@ -1,37 +1,38 @@
-
 <table class='table'>
     <thead>
-        <th class='table-header cell'>City</th>
-        <th class='table-header cell'>Country</th>
-        <th class='table-header cell'>Weather</th>
-        <th class='table-header cell'>Temp.</th>
+        <th class='table__header table__cell'>City</th>
+        <th class='table__header table__cell'>Country</th>
+        <th class='table__header table__cell'>Weather</th>
+        <th class='table__header table__cell'>Temp.</th>
     </thead>
     <tbody>
         <tr *ngFor='let location of locationsList.data; let i=index;' 
-           
-            [class.selected]="areObjectsEqual(location,currentLocation)" 
+            [class.table__row_selected]="areObjectsEqual(location,currentLocation)" 
             (click)='chooseLocation(location)'
-            class='table-row row'>
+            class='table__row'>
 
-            <td class='cell'>
+            <td class='table__cell'>
                 {{location.city}}
             </td>
-            <td class='cell'>
+            <td class='table__cell'>
                 {{location.country}}
             </td>
-            <td class='cell'>
-                 <div *ngIf="list[i]"> <app-icon [size]='iconSize' [icon]='list[i].icon'></app-icon> </div>
+            <td class='table__cell'>
+                 <div *ngIf="weatherList[i]"> 
+                     <app-icon [size]='iconSize' [icon]='weatherList[i].icon'>
+                    </app-icon>
+                 </div>
             </td>
-            <td class='cell'>
-                 <div *ngIf="list[i]"> {{list[i].temperature}}&deg; C </div>
+            <td class='table__cell'>
+                 <div *ngIf="weatherList[i]"> {{weatherList[i].temperature}}&deg; C </div>
             </td>
 
         </tr>
     </tbody>
 </table>
-<div class='button' (click)='saveLocation()'>
-    +
-</div>
-<div class='button' (click)='deleteLocation()'>
-    -
-</div>
+<button class='button' [disabled]='locationsList.data.length >=7' (click)='saveLocation()'>
+    Add
+</button>
+<button class='button' [disabled]='locationsList.data.length <=0'(click)='deleteLocation()'>
+    Remove
+</button>

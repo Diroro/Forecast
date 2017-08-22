@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    background= "black";
+    background= "grey";
     getBg(bg){
         this.background=bg;
     }

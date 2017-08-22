@@ -1,9 +1,9 @@
 <div class='location-container'>
 
     <button class='location-item' *ngIf='isLocationChanged' (click)='loadCurrentLocation()'>Back to current Location</button>
-    <div class ='location-item'>
-    <button class='inline'(click)='changeEditMode()'>Change Location</button>
-    <app-autocomplete class='inline' *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>
-    </app-autocomplete>
+    <div class='location-item'>
+        <button class='inline' (click)='changeEditMode()'>Change Location</button>
+        <app-autocomplete class='inline' *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>
+        </app-autocomplete>
     </div>
 </div>

@@ -1,56 +1,48 @@
 
-.locations__locations-item{
-    height: 100px;
-    width: 100px;
-    border: 1px solid rgba(255,255,255,1);
-    border-radius: 5px;
-    margin: 5px;
-    outline: none;
-}
-.locations{
-    display: flex;
-    flex-wrap: wrap;
-    
-} 
 
 .table{
    width: 100%;
    border:none;
- 
 }
-.row:nth-child(odd){
+.table__row:nth-child(odd){
     background-color: rgba(0,0,0,0.1)
 }
-.row:nth-child(even) , thead{
+.table__row:nth-child(even) , thead{
     background-color: rgba(0,0,0,0.3);
 }
-.table-row{
-    padding: 10px;
+.table__row{
+    height: 40px;
 }
 
- /* .table-row:hover{
-     background-color: rgba(255,100,100,0.5)
- } */
-tr.selected{
-    
+.table__row_selected{
      background-color:rgba(255,255,255,0.3) !important;
 }
-
-.cell{
+.table__row:hover, .button:hover{
+    background-color: rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+.table__cell{
     padding: 5px;
     text-align: center;
     color: white;
 }
-.table-header{
+.table__header{
     font-size: 14px;
   
 } 
-
+.button:disabled{
+    background-color: rgba(0,0,0,0.3);
+    color: rgba(255,255,255,0.5);
+}
 .button{
-    display: inline-block;
+    color: white;
+    background-color:transparent;
+    padding: 2px 5px;
     margin: 5px 0;
     border-radius: 5px;
     width: 100px;
-    height:20px;
     border: 1px solid rgba(255,255,255,0.5);
+}
+.button:focus{
+    outline:none
 }

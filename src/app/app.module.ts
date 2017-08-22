@@ -15,6 +15,7 @@ import { GooglePlaceModule } from 'ng2-google-place-autocomplete';
 import { IconComponent } from './icon/icon.component';
 import { LoadingComponent } from './loading/loading.component';
 import { LocationsListComponent } from './locations-list/locations-list.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { LocationsListComponent } from './locations-list/locations-list.componen
         AutocompleteComponent,
         IconComponent,
         LoadingComponent,
-        LocationsListComponent
+        LocationsListComponent,
+        ErrorMessageComponent
     ],
     imports: [
         BrowserModule,

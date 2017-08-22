@@ -16,21 +16,14 @@ export class LocationComponent implements OnInit {
     @Output() changeLocation = new EventEmitter();
     @Input() isLocationChanged: boolean;
     ngOnInit() {
-        // this.loadCurrentLocation();
     }
-
-    editModeOff(){
-        if (!this.isEditModeOn){
-
-        this.isEditModeOn=false;
-        }
-    }
+   
     changeEditMode() {
         this.isEditModeOn = !this.isEditModeOn;
     }
 
     loadCurrentLocation() {
-            let currentLocation = { city: 'Current', country: 'Location', lat:'', lng:''} // TYPE LOCATION, or may be const 
+            let currentLocation = { city: 'Current', country: 'Location', lat:'', lng:''};
             this.changeLocation.emit(currentLocation);
     }
 
@@ -38,8 +31,5 @@ export class LocationComponent implements OnInit {
         this.changeLocation.emit(location);
         this.changeEditMode();
         this.isLocationChanged = true;
-    }
-    handleError(e):any{
-        return e;
     }
 }

@@ -2,27 +2,23 @@
 .table{
    width: 100%;
    border:none;
- 
 }
-.table-row{
+.table__row{
     padding: 10px;
 }
 
- tr:nth-child(odd){
-   
+.table__row:nth-child(odd){
     background-color: rgba(0,0,0,0.1)
 }
-tr:nth-child(even) , thead{
+.table__row:nth-child(even) , .table__header{
     background-color: rgba(0,0,0,0.3)
-  
 }
 
-.cell{
+.table__cell{
     padding: 5px;
     text-align: center;
     color: white;
 }
-.table-header{
+.table__header{
     font-size: 14px;
-  
 } 

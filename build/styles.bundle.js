@@ -1,9 +1,9 @@
 webpackJsonp([2,4],{
 
-/***/ 159:
+/***/ 160:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
@@ -15,7 +15,7 @@ exports.push([module.i, "*{\r\n    padding:0;\r\n    margin: 0;\r\n\tbox-sizing:
 
 /***/ }),
 
-/***/ 201:
+/***/ 204:
 /***/ (function(module, exports) {
 
 /*
@@ -268,7 +268,7 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 206:
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(88);
@@ -276,7 +276,7 @@ module.exports = __webpack_require__(88);
 
 /***/ }),
 
-/***/ 6:
+/***/ 4:
 /***/ (function(module, exports) {
 
 /*
@@ -339,10 +339,10 @@ module.exports = function() {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(159);
+var content = __webpack_require__(160);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(201)(content, {});
+var update = __webpack_require__(204)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -360,5 +360,5 @@ if(false) {
 
 /***/ })
 
-},[206]);
+},[209]);
 //# sourceMappingURL=styles.bundle.js.map

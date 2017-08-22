@@ -13,18 +13,16 @@ export class MainComponent implements OnInit {
         locationsList: { data: [], shouldBeLoaded: -1 },
         location: null,
         weather: null,
-        weatherList: null,
+        weatherList: [],
         isLocationsListOpened: null,
-        isLocationChanged: false,
+        isLocationCurrent: true,
         isWeatherLoaded: false,
         isLoadingShown: false,
         error: {
             message: null,
             action: null,
-            actionBtnText: "Try again",
-            object: null
+            actionBtnText: "Retry"
         }
-
     }
 
     public imgPath = '../images/darksky.png';
@@ -41,23 +39,36 @@ export class MainComponent implements OnInit {
 
     getLocationsList(callback = () => { }) {
         let newList = this.lss.getLocationsList();
+        this.state.weatherList = [];
         this.ws.getCurrentWeatherForList(newList.data)
             .then((weatherList) => {
-                this.state.weatherList = weatherList;
-                this.state.locationsList = newList;
-                callback();
-            });
+                weatherList.map(weather => {
+                    let cityWeather = {
+                        temperature: Math.round(weather.temperature),
+                        icon: weather.icon
+                    }
+                    this.state.weatherList.push(cityWeather);
+                })
 
+                callback();
+
+            }).catch(e => this.handleError(this.getLocationsList.bind(this), 'weather list'));
+        this.state.locationsList = newList;
+    }
+
+    loadCurrentLocation() {
+        this.cls.getCurrentLocation()
+            .then((location: any) => {
+                this.state.location = location;
+                this.handleChangeLocation();
+            })
+            .catch((e) =>
+                this.handleError(this.checkLocationSourceAndLoad.bind(this), "current location"));
     }
 
     checkLocationSourceAndLoad() {
         if (this.state.locationsList.shouldBeLoaded < 0) {
-            this.cls.getCurrentLocation()
-                .then(location => {
-                    this.state.location = location;
-                    this.handleChangeLocation();
-                })
-                .catch((obj) => this.handleCurrentLocationError());
+            this.loadCurrentLocation();
         }
         else {
             this.state.location = this.state.locationsList.data[this.state.locationsList.shouldBeLoaded];
@@ -65,23 +76,13 @@ export class MainComponent implements OnInit {
         }
     }
 
-
-    toggleLocationsList() {
-        this.state.isLocationsListOpened = !this.state.isLocationsListOpened;
-    }
-
     handleNewLocation(location) {
         if (location.city === 'Current') {
-            this.state.isLocationChanged = false;
-            this.cls.getCurrentLocation().then((location: any) => {
-
-                this.state.location = location;
-                this.handleChangeLocation();
-            })
+            this.state.isLocationCurrent = true;
+            this.loadCurrentLocation();
         }
         else {
-            this.state.isLocationChanged = true;
-
+            this.state.isLocationCurrent = false;
             this.state.location = location;
             this.handleChangeLocation();
         }
@@ -90,11 +91,10 @@ export class MainComponent implements OnInit {
 
     handleLocationFromStorage(location) {
         this.state.isLoadingShown = false;
-        this.state.isLocationChanged = true;
+        this.state.isLocationCurrent = false;
         this.state.location = location;
         this.handleChangeLocation();
         this.lss.setLocationFromStorageAttr(this.state.location);
-
     }
 
     handleChangeLocation() {
@@ -107,28 +107,25 @@ export class MainComponent implements OnInit {
                 this.state.isLoadingShown = false;
                 this.bg.emit(this.getBackgroundByKey(this.state.weather));
             })
-            .catch((e) => this.handleWeatherError());
-    }
-    handleCurrentLocationError() {
-        console.log('Current Location Error!');
-        this.state.isLoadingShown = false;
-        this.state.error.message = "Error on loading the current location...";
-        this.state.error.actionBtnText = "Try again";
-        this.state.error.action = this.checkLocationSourceAndLoad.bind(this);
+            .catch((e) => this.handleError(this.handleChangeLocation.bind(this), 'current weather'));
     }
 
-    handleWeatherError() {
+    handleError(action, object) {
         this.state.isLoadingShown = false;
-        this.state.error.message = "Error on loading the weather...";
-        this.state.error.actionBtnText = "Try again";
-        this.state.error.action = this.handleChangeLocation.bind(this);
-
+        this.state.error.message = "Error on loading the " + object + "...";
+        this.state.error.actionBtnText = "Retry";
+        this.state.error.action = action;
     }
+
     actionOnError() {
         this.state.error.message = "";
         this.state.error.action();
     }
 
+    toggleLocationsList() {
+        this.state.isLocationsListOpened = !this.state.isLocationsListOpened;
+    }
+    
     getBackgroundByKey(weather) {
         const sun = 'linear-gradient(to top, #e85a8a, #faae56)';
         const moon = 'linear-gradient(to top, #141e30, #243b55)';
@@ -150,7 +147,6 @@ export class MainComponent implements OnInit {
             "fog": nightClouds,
             "wind": lightClouds
         };
-
         return backgrounds[weather.currently.icon];
     }
 

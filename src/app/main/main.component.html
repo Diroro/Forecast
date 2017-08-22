@@ -1,15 +1,18 @@
 <header class='block'>
     Weather Forecast
 </header>
+
 <div *ngIf='state.location' class='app__current-location block'>
     {{state.location.city}}, {{state.location.country}}
 </div>
 
 <app-location 
     [isLocationChanged]='state.isLocationChanged' 
-    (changeLocation)='handleNewLocation($event)'></app-location>
+    (changeLocation)='handleNewLocation($event)'>
+</app-location>
+
 <div class='app__location-storage section'>
-    <div class='location-storage__header' (click)='toggleLocationsList()'>Locations Storage, ({{state.locationsList.data.length}}/7)</div>
+    <div class='location-storage__header' (click)='toggleLocationsList()'>{{state.isLocationsListOpened? "Collapse ":"Expand "}} Locations Storage ({{state.locationsList.data.length}}/7) </div>
     <app-locations-list *ngIf='state.isLocationsListOpened && state.locationsList' 
         (setCurrentLocation)='handleLocationFromStorage($event)' 
         (getLocationsList)='getLocationsList()'
@@ -27,15 +30,19 @@
         <app-forecast   *ngIf='state.isWeatherLoaded' [dailyForecast]='state.weather.daily'></app-forecast>
     </div>
 </div>
+
+<app-loading  *ngIf="state.isLoadingShown"></app-loading>
+
+ <app-error-message class='app__error' *ngIf="state.error.message"  
+    [errorMessage]="state.error.message"  
+    [actionBtnMessage]="state.error.actionBtnText"
+    (action)="actionOnError()">
+</app-error-message>
+
 <footer class='block'>
     <a href="https://darksky.net/poweredby/" target="_blank">
         <div class='footer-img'></div>
     </a>
 </footer>
-<div *ngIf="state.isLoadingShown">
-    <app-loading></app-loading>
-</div>
-<div class = "app__error-message" *ngIf="state.error.message">
-    {{this.state.error.message}}
-    <button class="error-message__btn" (click)='actionOnError()'>{{this.state.error.actionBtnText}}</button>
-</div>
+
+

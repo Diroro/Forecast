@@ -5,6 +5,75 @@ webpackJsonp([1,4],{
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForecastComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ForecastComponent = (function () {
+    function ForecastComponent() {
+        this.forecast = [];
+        this.iconSize = 'small';
+    }
+    ForecastComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.dailyForecast.data.map(function (item) {
+            var windBearing = item.windBearing || -1;
+            var windBearingString = windBearing < 0 ? '' :
+                windBearing < 23 ? 'N' :
+                    windBearing < 68 ? 'NE' :
+                        windBearing < 113 ? 'E' :
+                            windBearing < 158 ? 'SE' :
+                                windBearing < 203 ? 'S' :
+                                    windBearing < 248 ? 'SW' :
+                                        windBearing < 293 ? 'W' :
+                                            windBearing < 338 ? 'NW' :
+                                                'N';
+            var date = new Date(item.time * 1000);
+            var day = {
+                time: date.toDateString().slice(0, 10),
+                temperatureMax: Math.round(item.temperatureMax),
+                temperatureMin: Math.round(item.temperatureMin),
+                pressure: Math.round(item.pressure * 0.75),
+                summary: item.summary,
+                icon: item.icon,
+                precipProbability: Math.round(item.precipProbability * 100),
+                windBearing: windBearingString,
+                windSpeed: Math.round(item.windSpeed)
+            };
+            _this.forecast.push(day);
+        });
+    };
+    return ForecastComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["O" /* Input */])(),
+    __metadata("design:type", Object)
+], ForecastComponent.prototype, "dailyForecast", void 0);
+ForecastComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
+        selector: 'app-forecast',
+        template: __webpack_require__(174),
+        styles: [__webpack_require__(164)]
+    }),
+    __metadata("design:paramtypes", [])
+], ForecastComponent);
+
+//# sourceMappingURL=forecast.component.js.map
+
+/***/ }),
+
+/***/ 101:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IconComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -36,8 +105,8 @@ __decorate([
 IconComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'app-icon',
-        template: __webpack_require__(172),
-        styles: [__webpack_require__(163)]
+        template: __webpack_require__(175),
+        styles: [__webpack_require__(165)]
     }),
     __metadata("design:paramtypes", [])
 ], IconComponent);
@@ -46,7 +115,7 @@ IconComponent = __decorate([
 
 /***/ }),
 
-/***/ 101:
+/***/ 102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65,15 +134,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var LoadingComponent = (function () {
     function LoadingComponent() {
     }
-    LoadingComponent.prototype.ngOnInit = function () {
-    };
     return LoadingComponent;
 }());
 LoadingComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'app-loading',
-        template: __webpack_require__(173),
-        styles: [__webpack_require__(164)]
+        template: __webpack_require__(176),
+        styles: [__webpack_require__(166)]
     }),
     __metadata("design:paramtypes", [])
 ], LoadingComponent);
@@ -82,7 +149,7 @@ LoadingComponent = __decorate([
 
 /***/ }),
 
-/***/ 102:
+/***/ 103:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -105,27 +172,18 @@ var LocationComponent = (function () {
         this.changeLocation = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* EventEmitter */]();
     }
     LocationComponent.prototype.ngOnInit = function () {
-        // this.loadCurrentLocation();
-    };
-    LocationComponent.prototype.editModeOff = function () {
-        if (!this.isEditModeOn) {
-            this.isEditModeOn = false;
-        }
     };
     LocationComponent.prototype.changeEditMode = function () {
         this.isEditModeOn = !this.isEditModeOn;
     };
     LocationComponent.prototype.loadCurrentLocation = function () {
-        var currentLocation = { city: 'Current', country: 'Location', lat: '', lng: '' }; // TYPE LOCATION, or may be const 
+        var currentLocation = { city: 'Current', country: 'Location', lat: '', lng: '' };
         this.changeLocation.emit(currentLocation);
     };
     LocationComponent.prototype.handleChangingLocation = function (location) {
         this.changeLocation.emit(location);
         this.changeEditMode();
         this.isLocationChanged = true;
-    };
-    LocationComponent.prototype.handleError = function (e) {
-        return e;
     };
     return LocationComponent;
 }());
@@ -140,8 +198,8 @@ __decorate([
 LocationComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'app-location',
-        template: __webpack_require__(174),
-        styles: [__webpack_require__(165)],
+        template: __webpack_require__(177),
+        styles: [__webpack_require__(167)],
     }),
     __metadata("design:paramtypes", [])
 ], LocationComponent);
@@ -150,7 +208,7 @@ LocationComponent = __decorate([
 
 /***/ }),
 
-/***/ 103:
+/***/ 104:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -177,14 +235,6 @@ var LocationsListComponent = (function () {
         this.iconSize = 'small';
     }
     LocationsListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.weatherList.map(function (weather) {
-            var cityWeather = {
-                temperature: Math.round(weather.temperature),
-                icon: weather.icon
-            };
-            _this.list.push(cityWeather);
-        });
     };
     LocationsListComponent.prototype.saveLocation = function () {
         if (this.locationsList.data.length < 7
@@ -233,8 +283,8 @@ __decorate([
 LocationsListComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_5" /* Component */])({
         selector: 'app-locations-list',
-        template: __webpack_require__(175),
-        styles: [__webpack_require__(166)],
+        template: __webpack_require__(178),
+        styles: [__webpack_require__(168)],
         providers: [__WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */]]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */]) === "function" && _a || Object])
@@ -245,7 +295,7 @@ var _a;
 
 /***/ }),
 
-/***/ 104:
+/***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -276,16 +326,15 @@ var MainComponent = (function () {
             locationsList: { data: [], shouldBeLoaded: -1 },
             location: null,
             weather: null,
-            weatherList: null,
+            weatherList: [],
             isLocationsListOpened: null,
-            isLocationChanged: false,
+            isLocationCurrent: true,
             isWeatherLoaded: false,
             isLoadingShown: false,
             error: {
                 message: null,
                 action: null,
-                actionBtnText: "Try again",
-                object: null
+                actionBtnText: "Retry"
             }
         };
         this.imgPath = '../images/darksky.png';
@@ -298,42 +347,47 @@ var MainComponent = (function () {
         var _this = this;
         if (callback === void 0) { callback = function () { }; }
         var newList = this.lss.getLocationsList();
+        this.state.weatherList = [];
         this.ws.getCurrentWeatherForList(newList.data)
             .then(function (weatherList) {
-            _this.state.weatherList = weatherList;
-            _this.state.locationsList = newList;
+            weatherList.map(function (weather) {
+                var cityWeather = {
+                    temperature: Math.round(weather.temperature),
+                    icon: weather.icon
+                };
+                _this.state.weatherList.push(cityWeather);
+            });
             callback();
+        }).catch(function (e) { return _this.handleError(_this.getLocationsList.bind(_this), 'weather list'); });
+        this.state.locationsList = newList;
+    };
+    MainComponent.prototype.loadCurrentLocation = function () {
+        var _this = this;
+        this.cls.getCurrentLocation()
+            .then(function (location) {
+            _this.state.location = location;
+            _this.handleChangeLocation();
+        })
+            .catch(function (e) {
+            return _this.handleError(_this.checkLocationSourceAndLoad.bind(_this), "current location");
         });
     };
     MainComponent.prototype.checkLocationSourceAndLoad = function () {
-        var _this = this;
         if (this.state.locationsList.shouldBeLoaded < 0) {
-            this.cls.getCurrentLocation()
-                .then(function (location) {
-                _this.state.location = location;
-                _this.handleChangeLocation();
-            })
-                .catch(function (obj) { return _this.handleCurrentLocationError(); });
+            this.loadCurrentLocation();
         }
         else {
             this.state.location = this.state.locationsList.data[this.state.locationsList.shouldBeLoaded];
             this.handleLocationFromStorage(this.state.locationsList.data[this.state.locationsList.shouldBeLoaded]);
         }
     };
-    MainComponent.prototype.toggleLocationsList = function () {
-        this.state.isLocationsListOpened = !this.state.isLocationsListOpened;
-    };
     MainComponent.prototype.handleNewLocation = function (location) {
-        var _this = this;
         if (location.city === 'Current') {
-            this.state.isLocationChanged = false;
-            this.cls.getCurrentLocation().then(function (location) {
-                _this.state.location = location;
-                _this.handleChangeLocation();
-            });
+            this.state.isLocationCurrent = true;
+            this.loadCurrentLocation();
         }
         else {
-            this.state.isLocationChanged = true;
+            this.state.isLocationCurrent = false;
             this.state.location = location;
             this.handleChangeLocation();
         }
@@ -341,7 +395,7 @@ var MainComponent = (function () {
     };
     MainComponent.prototype.handleLocationFromStorage = function (location) {
         this.state.isLoadingShown = false;
-        this.state.isLocationChanged = true;
+        this.state.isLocationCurrent = false;
         this.state.location = location;
         this.handleChangeLocation();
         this.lss.setLocationFromStorageAttr(this.state.location);
@@ -357,24 +411,20 @@ var MainComponent = (function () {
             _this.state.isLoadingShown = false;
             _this.bg.emit(_this.getBackgroundByKey(_this.state.weather));
         })
-            .catch(function (e) { return _this.handleWeatherError(); });
+            .catch(function (e) { return _this.handleError(_this.handleChangeLocation.bind(_this), 'current weather'); });
     };
-    MainComponent.prototype.handleCurrentLocationError = function () {
-        console.log('Current Location Error!');
+    MainComponent.prototype.handleError = function (action, object) {
         this.state.isLoadingShown = false;
-        this.state.error.message = "Error on loading the current location...";
-        this.state.error.actionBtnText = "Try again";
-        this.state.error.action = this.checkLocationSourceAndLoad.bind(this);
-    };
-    MainComponent.prototype.handleWeatherError = function () {
-        this.state.isLoadingShown = false;
-        this.state.error.message = "Error on loading the weather...";
-        this.state.error.actionBtnText = "Try again";
-        this.state.error.action = this.handleChangeLocation.bind(this);
+        this.state.error.message = "Error on loading the " + object + "...";
+        this.state.error.actionBtnText = "Retry";
+        this.state.error.action = action;
     };
     MainComponent.prototype.actionOnError = function () {
         this.state.error.message = "";
         this.state.error.action();
+    };
+    MainComponent.prototype.toggleLocationsList = function () {
+        this.state.isLocationsListOpened = !this.state.isLocationsListOpened;
     };
     MainComponent.prototype.getBackgroundByKey = function (weather) {
         var sun = 'linear-gradient(to top, #e85a8a, #faae56)';
@@ -407,8 +457,8 @@ __decorate([
 MainComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["_5" /* Component */])({
         selector: 'app-main',
-        template: __webpack_require__(176),
-        styles: [__webpack_require__(167)],
+        template: __webpack_require__(179),
+        styles: [__webpack_require__(169)],
         providers: [__WEBPACK_IMPORTED_MODULE_1__weather_service__["a" /* WeatherService */], __WEBPACK_IMPORTED_MODULE_2__current_location_service__["a" /* CurrentLocationService */], __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */]]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__weather_service__["a" /* WeatherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__weather_service__["a" /* WeatherService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__current_location_service__["a" /* CurrentLocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__current_location_service__["a" /* CurrentLocationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */]) === "function" && _c || Object])
@@ -419,7 +469,7 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ 105:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -470,8 +520,8 @@ __decorate([
 WeatherComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'app-weather',
-        template: __webpack_require__(177),
-        styles: [__webpack_require__(168)]
+        template: __webpack_require__(180),
+        styles: [__webpack_require__(170)]
     }),
     __metadata("design:paramtypes", [])
 ], WeatherComponent);
@@ -480,7 +530,7 @@ WeatherComponent = __decorate([
 
 /***/ }),
 
-/***/ 106:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -497,10 +547,10 @@ var environment = {
 
 /***/ }),
 
-/***/ 160:
+/***/ 161:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
@@ -515,33 +565,15 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 161:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(6)();
-// imports
-
-
-// module
-exports.push([module.i, "input{\r\n    font-size: 16px;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
 /***/ 162:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
 // module
-exports.push([module.i, "\r\n.table{\r\n   width: 100%;\r\n   border:none;\r\n \r\n}\r\n.table-row{\r\n    padding: 10px;\r\n}\r\n\r\n tr:nth-child(odd){\r\n   \r\n    background-color: rgba(0,0,0,0.1)\r\n}\r\ntr:nth-child(even) , thead{\r\n    background-color: rgba(0,0,0,0.3)\r\n  \r\n}\r\n\r\n.cell{\r\n    padding: 5px;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.table-header{\r\n    font-size: 14px;\r\n  \r\n} \r\n", ""]);
+exports.push([module.i, ".input{\r\n    font-size: 16px;\r\n}", ""]);
 
 // exports
 
@@ -554,12 +586,12 @@ module.exports = module.exports.toString();
 /***/ 163:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
 // module
-exports.push([module.i, ".weather-icon{\r\n    vertical-align: middle;\r\n    display: inline-block;\r\n}\r\n.weather-icon-wrapper{\r\n   \r\n    display: inline-block;\r\n    background: white;\r\n    border-color: rgba(0, 0, 0, 0);\r\n\r\n}\r\n.icon-small{\r\n    height: 30px;\r\n    width: 30px;\r\n}\r\n\r\n.wrapper-small{\r\n    border-radius: 6px;\r\n    padding:3px;\r\n}\r\n\r\n.clear-night-small{\r\n    background: rgba(0, 0, 0, 0) url(" + __webpack_require__(68) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n\r\n.clear-day-small{\r\n     background:  url(" + __webpack_require__(72) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n\r\n.fog-small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(66) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n.rain-small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(69) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n.snow-small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(70) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n.wind-small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(73) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n.cloudy-small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(65) + ") no-repeat scroll center center / 30px auto;\r\n}\r\n.partly-cloudy-night-small{\r\n    background: rgba(0, 0, 0, 0) url(" + __webpack_require__(67) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n\r\n.partly-cloudy-day-small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(71) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n.icon-large{\r\n    height: 70px;\r\n    width: 70px;\r\n}\r\n\r\n.wrapper-large{\r\n    border-radius: 14px;\r\n    padding:7px;\r\n}\r\n\r\n.clear-night-large{\r\n    background: rgba(0, 0, 0, 0) url(" + __webpack_require__(68) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n\r\n.clear-day-large{\r\n     background:  url(" + __webpack_require__(72) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n\r\n.fog-large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(66) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n.rain-large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(69) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n.snow-large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(70) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n.wind-large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(73) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n.cloudy-large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(65) + ") no-repeat scroll center center / 70px auto;\r\n}\r\n.partly-cloudy-night-large{\r\n    background: rgba(0, 0, 0, 0) url(" + __webpack_require__(67) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n\r\n.partly-cloudy-day-large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(71) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}", ""]);
+exports.push([module.i, ".error{\r\n    position: fixed;\r\n    top:0;\r\n    width:100%;\r\n    padding: 10px;\r\n    background-color: rgba(150,30,30, 0.95);\r\n    text-align: center;\r\n    font-family: 'PT Sans', sans-serif;\r\n}\r\n.error__message{\r\n    color: white;\r\n    display: block;\r\n    font-size: 30px;\r\n    margin: 5px;\r\n}\r\n.error__btn{\r\n    font-size:20px;\r\n    border: none;\r\n    padding: 2px 10px;\r\n    margin: 5px;\r\n}", ""]);
 
 // exports
 
@@ -572,12 +604,12 @@ module.exports = module.exports.toString();
 /***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
 // module
-exports.push([module.i, ".loading{\r\n  \r\n    position:fixed;\r\n    top:0;\r\n    left:0;\r\n    height:100%;\r\n    width: 100%;\r\n    z-index: 999;\r\n    background-color: rgba(0,0,0,0.70);\r\n    \r\n}\r\nspan{\r\n    display: inline-block;\r\n    color: white;\r\n    font-size: 40px;\r\n    width: 100%;\r\n    text-align: center;\r\n    font-family: 'PT Sans', sans-serif;\r\n    margin-top: 200px;\r\n}", ""]);
+exports.push([module.i, "\r\n.table{\r\n   width: 100%;\r\n   border:none;\r\n}\r\n.table__row{\r\n    padding: 10px;\r\n}\r\n\r\n.table__row:nth-child(odd){\r\n    background-color: rgba(0,0,0,0.1)\r\n}\r\n.table__row:nth-child(even) , .table__header{\r\n    background-color: rgba(0,0,0,0.3)\r\n}\r\n\r\n.table__cell{\r\n    padding: 5px;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.table__header{\r\n    font-size: 14px;\r\n} \r\n", ""]);
 
 // exports
 
@@ -590,12 +622,12 @@ module.exports = module.exports.toString();
 /***/ 165:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(4)();
 // imports
-exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=PT+Sans);", ""]);
+
 
 // module
-exports.push([module.i, "*{\r\n   \r\n\tbox-sizing: border-box;\r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\n.location-container{\r\n    width: 100%;\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n    -webkit-box-align: center;\r\n        -ms-flex-align: center;\r\n            align-items: center;\r\n    padding: 10px;\r\n    font-family: 'PT Sans', sans-serif;\r\n}\r\n.current-location{\r\n    font-size: 36px;\r\n\r\n}\r\n\r\n.location-item{\r\n     color: white;\r\n     margin: 5px;\r\n    line-height: 30px;\r\n}\r\n.inline{\r\n    display: inline-block;\r\n    color: white;\r\n}\r\nbutton{\r\n    display:block;\r\n    background: transparent;\r\n    border:0 none;\r\n    font-size: 20px;\r\n    padding: 0 5px;\r\n}\r\nbutton:hover{\r\n    text-decoration: underline;\r\n}\r\nbutton:focus{\r\n   outline:none;\r\n}", ""]);
+exports.push([module.i, "\r\n.weather-icon__wrapper{\r\n   \r\n    display: inline-block;\r\n    background: white;\r\n    border-color: rgba(0, 0, 0, 0);\r\n\r\n}\r\n\r\n.weather-icon__wrapper_small{\r\n    border-radius: 6px;\r\n    padding:3px;\r\n}\r\n.weather-icon__wrapper_large{\r\n    border-radius: 14px;\r\n    padding:7px;\r\n}\r\n\r\n.weather-icon__icon{\r\n    vertical-align: middle;\r\n    display: inline-block;\r\n}\r\n\r\n.weather-icon__icon_small{\r\n    height: 30px;\r\n    width: 30px;\r\n}\r\n\r\n.weather-icon__icon_large{\r\n    height: 70px;\r\n    width: 70px;\r\n}\r\n\r\n.clear-night_small{\r\n    background: rgba(0, 0, 0, 0) url(" + __webpack_require__(68) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n\r\n.clear-day_small{\r\n     background:  url(" + __webpack_require__(72) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n\r\n.fog_small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(66) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n.rain_small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(69) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n.snow_small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(70) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n.wind_small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(73) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n.cloudy_small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(65) + ") no-repeat scroll center center / 30px auto;\r\n}\r\n.partly-cloudy-night_small{\r\n    background: rgba(0, 0, 0, 0) url(" + __webpack_require__(67) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n\r\n.partly-cloudy-day_small{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(71) + ") no-repeat scroll center center / 30px auto;\r\n \r\n}\r\n\r\n\r\n.clear-night_large{\r\n    background: rgba(0, 0, 0, 0) url(" + __webpack_require__(68) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n\r\n.clear-day_large{\r\n     background:  url(" + __webpack_require__(72) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n\r\n.fog_large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(66) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n.rain_large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(69) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n.snow_large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(70) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n.wind_large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(73) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n.cloudy_large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(65) + ") no-repeat scroll center center / 70px auto;\r\n}\r\n.partly-cloudy-night_large{\r\n    background: rgba(0, 0, 0, 0) url(" + __webpack_require__(67) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}\r\n\r\n.partly-cloudy-day_large{\r\n     background: rgba(0, 0, 0, 0) url(" + __webpack_require__(71) + ") no-repeat scroll center center / 70px auto;\r\n \r\n}", ""]);
 
 // exports
 
@@ -608,12 +640,12 @@ module.exports = module.exports.toString();
 /***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
 // module
-exports.push([module.i, "\r\n.locations__locations-item{\r\n    height: 100px;\r\n    width: 100px;\r\n    border: 1px solid rgba(255,255,255,1);\r\n    border-radius: 5px;\r\n    margin: 5px;\r\n    outline: none;\r\n}\r\n.locations{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -ms-flex-wrap: wrap;\r\n        flex-wrap: wrap;\r\n    \r\n} \r\n\r\n.table{\r\n   width: 100%;\r\n   border:none;\r\n \r\n}\r\n.row:nth-child(odd){\r\n    background-color: rgba(0,0,0,0.1)\r\n}\r\n.row:nth-child(even) , thead{\r\n    background-color: rgba(0,0,0,0.3);\r\n}\r\n.table-row{\r\n    padding: 10px;\r\n}\r\n\r\n /* .table-row:hover{\r\n     background-color: rgba(255,100,100,0.5)\r\n } */\r\ntr.selected{\r\n    \r\n     background-color:rgba(255,255,255,0.3) !important;\r\n}\r\n\r\n.cell{\r\n    padding: 5px;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.table-header{\r\n    font-size: 14px;\r\n  \r\n} \r\n\r\n.button{\r\n    display: inline-block;\r\n    margin: 5px 0;\r\n    border-radius: 5px;\r\n    width: 100px;\r\n    height:20px;\r\n    border: 1px solid rgba(255,255,255,0.5);\r\n}\r\n", ""]);
+exports.push([module.i, ".loading{\r\n    position:fixed;\r\n    top:0;\r\n    left:0;\r\n    height:100%;\r\n    width: 100%;\r\n    z-index: 999;\r\n    background-color: rgba(0,0,0,0.70);\r\n    \r\n}\r\n.loading__message{\r\n    display: inline-block;\r\n    color: white;\r\n    font-size: 40px;\r\n    width: 100%;\r\n    text-align: center;\r\n    font-family: 'PT Sans', sans-serif;\r\n    margin-top: 200px;\r\n}", ""]);
 
 // exports
 
@@ -626,12 +658,12 @@ module.exports = module.exports.toString();
 /***/ 167:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(4)();
 // imports
-
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=PT+Sans);", ""]);
 
 // module
-exports.push([module.i, "\r\n* {\r\n    box-sizing: border-box; \r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\nheader{\r\n    color: white;\r\n    font-size:20px;\r\n    margin-top: 10px;\r\n}\r\nfooter{\r\n    position:absolute;\r\n    bottom: 0;\r\n    height:50px;\r\n    border-color: rgba(0, 0, 0, 0);\r\n}\r\n.footer-img{\r\n    background: rgba(0,0,0,0) url(" + __webpack_require__(202) + ")  center center / auto 50px;\r\n    height: 50px;\r\n    width:200px;\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n}\r\n.app__current-location{\r\n    font-size:40px;\r\n}\r\n.block {\r\n    font-family: 'PT Sans', sans-serif;\r\n\twidth: 100%;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.section{\r\n    border: 1px solid rgba(255,255,255,0.5); \r\n    border-radius: 5px;  \r\n    margin: 5px;\r\n    min-width:400px;\r\n    font-family: 'PT Sans', sans-serif;\r\n    background-color: rgba(0,0,0,0.2);\r\n}\r\n.weather__section,.app__location-storage{\r\n  \r\n}\r\n.weather{\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n}\r\n\r\n.app__location-storage{\r\n    color:white;\r\n    text-align: center;\r\n}\r\n.location-storage__header{\r\n    padding:5px;\r\n}\r\n@media screen and (max-width: 860px){ \r\n   .weather{\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-align: stretch;\r\n        -ms-flex-align: stretch;\r\n            align-items: stretch;\r\n  \r\n}\r\n } \r\n   @media screen and (min-width: 860px) { \r\n    .weather__section{\r\n        width:50%;\r\n    }\r\n} \r\n\r\n.app__error-message{\r\n    position: fixed;\r\n    top:0;\r\n    width:100%;\r\n    padding: 10px;\r\n    background-color: red;\r\n    color: white;\r\n    text-align: center;\r\n    font-family: 'PT Sans', sans-serif;\r\n}\r\n.error-message__btn{\r\n    font-size:20px;\r\n    border: none;\r\n    padding: 2px 5px;\r\n\r\n}\r\n", ""]);
+exports.push([module.i, "*{\r\n   \r\n\tbox-sizing: border-box;\r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\n.location-container{\r\n    width: 100%;\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n    -webkit-box-align: center;\r\n        -ms-flex-align: center;\r\n            align-items: center;\r\n    padding: 10px;\r\n    font-family: 'PT Sans', sans-serif;\r\n}\r\n.current-location{\r\n    font-size: 36px;\r\n}\r\n\r\n.location-item{\r\n     color: white;\r\n     margin: 5px;\r\n    line-height: 30px;\r\n}\r\n.inline{\r\n    display: inline-block;\r\n    color: white;\r\n}\r\nbutton{\r\n    display:block;\r\n    background: transparent;\r\n    border:0 none;\r\n    font-size: 20px;\r\n    padding: 0 5px;\r\n    cursor:pointer;\r\n}\r\nbutton:hover{\r\n    text-decoration: underline;\r\n    \r\n}\r\nbutton:focus{\r\n   outline:none;\r\n}", ""]);
 
 // exports
 
@@ -644,7 +676,43 @@ module.exports = module.exports.toString();
 /***/ 168:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "\r\n\r\n.table{\r\n   width: 100%;\r\n   border:none;\r\n}\r\n.table__row:nth-child(odd){\r\n    background-color: rgba(0,0,0,0.1)\r\n}\r\n.table__row:nth-child(even) , thead{\r\n    background-color: rgba(0,0,0,0.3);\r\n}\r\n.table__row{\r\n    height: 40px;\r\n}\r\n\r\n.table__row_selected{\r\n     background-color:rgba(255,255,255,0.3) !important;\r\n}\r\n.table__row:hover, .button:hover{\r\n    background-color: rgba(255,255,255,0.1);\r\n    cursor: pointer;\r\n}\r\n.table__cell{\r\n    padding: 5px;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.table__header{\r\n    font-size: 14px;\r\n  \r\n} \r\n.button:disabled{\r\n    background-color: rgba(0,0,0,0.3);\r\n    color: rgba(255,255,255,0.5);\r\n}\r\n.button{\r\n    color: white;\r\n    background-color:transparent;\r\n    padding: 2px 5px;\r\n    margin: 5px 0;\r\n    border-radius: 5px;\r\n    width: 100px;\r\n    border: 1px solid rgba(255,255,255,0.5);\r\n}\r\n.button:focus{\r\n    outline:none\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 169:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "\r\n* {\r\n    box-sizing: border-box; \r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\nheader{\r\n    color: white;\r\n    font-size:20px;\r\n    margin-top: 10px;\r\n}\r\nfooter{\r\n    position:absolute;\r\n    bottom: 0;\r\n    height:50px;\r\n    border-color: rgba(0, 0, 0, 0);\r\n}\r\n.footer-img{\r\n    background: rgba(0,0,0,0) url(" + __webpack_require__(205) + ")  center center / auto 50px;\r\n    height: 50px;\r\n    width:200px;\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n}\r\n.app__current-location{\r\n    font-size:40px;\r\n}\r\n.block {\r\n    font-family: 'PT Sans', sans-serif;\r\n\twidth: 100%;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.section{\r\n    border: 1px solid rgba(255,255,255,0.5); \r\n    border-radius: 5px;  \r\n    margin: 5px;\r\n    min-width:400px;\r\n    font-family: 'PT Sans', sans-serif;\r\n    background-color: rgba(0,0,0,0.2);\r\n}\r\n.weather__section,.app__location-storage{\r\n  \r\n}\r\n.weather{\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n}\r\n\r\n.app__location-storage{\r\n    color:white;\r\n    text-align: center;\r\n}\r\n.location-storage__header{\r\n    padding:5px;\r\n    cursor:pointer;\r\n}\r\n@media screen and (max-width: 860px){ \r\n   .weather{\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-align: stretch;\r\n        -ms-flex-align: stretch;\r\n            align-items: stretch;\r\n  \r\n}\r\n } \r\n   @media screen and (min-width: 860px) { \r\n    .weather__section{\r\n        width:50%;\r\n    }\r\n} \r\n\r\n\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 170:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
@@ -659,77 +727,84 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 169:
+/***/ 171:
 /***/ (function(module, exports) {
 
 module.exports = "<div [ngStyle]=\"{'background':background}\" class='wrapper'>\r\n    <app-main (bg)=getBg($event)></app-main>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
-/***/ 170:
-/***/ (function(module, exports) {
-
-module.exports = "\r\n<input type=\"text\"\r\n    [options]=\"{types: ['(cities)']}\"\r\n    (city)= 'getCity($event)'\r\n    (country)='getCountry($event)'\r\n    (lat)='getLat($event)' \r\n    (lng)='getLng($event)'\r\n    id=\"autocomplete\"\r\n ng2-google-place-autocomplete/> "
-
-/***/ }),
-
-/***/ 171:
-/***/ (function(module, exports) {
-
-module.exports = "<table class='table'>\r\n    <thead>\r\n        <th class='table-header cell'>Day</th>\r\n        <th class='table-header cell'>Weather</th>\r\n        <th class='table-header cell'>Temp. max</th>\r\n        <th class='table-header cell'>Temp. min</th>\r\n        <th class='table-header cell'>Precip prob. %</th>\r\n        <th class='table-header cell'>Wind Bearing</th>\r\n        <th class='table-header cell'>Wind Speed</th>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor='let day of forecast' class='table-row row'>\r\n            <td class='cell'>\r\n                {{day.time}}\r\n            </td>\r\n            <td class='cell'>\r\n                <app-icon [size]='iconSize' [icon]='day.icon'></app-icon>\r\n            </td>\r\n            <td class='cell'>\r\n                {{day.temperatureMax}}&deg; C\r\n            </td>\r\n            <td class='cell'>\r\n                {{day.temperatureMin}}&deg; C\r\n            </td>\r\n            <td class='cell'>\r\n                {{day.precipProbability}} %\r\n            </td>\r\n            <td class='cell'>\r\n                {{day.windBearing}}\r\n            </td>\r\n            <td class='cell'>\r\n                {{day.windSpeed}} m/s\r\n            </td>\r\n\r\n        </tr>\r\n    </tbody>\r\n</table>"
-
-/***/ }),
-
 /***/ 172:
 /***/ (function(module, exports) {
 
-module.exports = "<div class='weather-icon-wrapper wrapper-{{iconSize}}'>\n    <div class='weather-icon icon-{{iconSize}}' ngClass='{{icon+\"-\"+iconSize}}'>\n    </div>\n</div>"
+module.exports = "\r\n<input class='input' type=\"text\"\r\n    [options]=\"{types: ['(cities)']}\"\r\n    (city)= 'getCity($event)'\r\n    (country)='getCountry($event)'\r\n    (lat)='getLat($event)' \r\n    (lng)='getLng($event)'\r\n    id=\"autocomplete\"\r\n ng2-google-place-autocomplete/> "
 
 /***/ }),
 
 /***/ 173:
 /***/ (function(module, exports) {
 
-module.exports = "<div class='loading'>\n    <span>Loading...</span>\n</div>"
+module.exports = "<div class = \"error\">\n    <span class ='error__message'>{{errorMessage}}</span>\n    <button class=\"error__btn\" (click)='doAction()'>{{actionBtnMessage}}</button>\n</div>"
 
 /***/ }),
 
 /***/ 174:
 /***/ (function(module, exports) {
 
-module.exports = "<div class='location-container'>\r\n\r\n    <button class='location-item' *ngIf='isLocationChanged' (click)='loadCurrentLocation()'>Back to current Location</button>\r\n    <div class ='location-item'>\r\n    <button class='inline'(click)='changeEditMode()'>Change Location</button>\r\n    <app-autocomplete class='inline' *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>\r\n    </app-autocomplete>\r\n    </div>\r\n</div>"
+module.exports = "<table class='table'>\r\n    <thead>\r\n        <th class='table__header table__cell'>Day</th>\r\n        <th class='table__header table__cell'>Weather</th>\r\n        <th class='table__header table__cell'>Temp. max</th>\r\n        <th class='table__header table__cell'>Temp. min</th>\r\n        <th class='table__header table__cell'>Precip prob. %</th>\r\n        <th class='table__header table__cell'>Wind Bearing</th>\r\n        <th class='table__header table__cell'>Wind Speed</th>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor='let day of forecast' class='table__row'>\r\n            <td class='table__cell'>\r\n                {{day.time}}\r\n            </td>\r\n            <td class='table__cell'>\r\n                <app-icon [size]='iconSize' [icon]='day.icon'></app-icon>\r\n            </td>\r\n            <td class='table__cell'>\r\n                {{day.temperatureMax}}&deg; C\r\n            </td>\r\n            <td class='table__cell'>\r\n                {{day.temperatureMin}}&deg; C\r\n            </td>\r\n            <td class='table__cell'>\r\n                {{day.precipProbability}} %\r\n            </td>\r\n            <td class='table__cell'>\r\n                {{day.windBearing}}\r\n            </td>\r\n            <td class='table__cell'>\r\n                {{day.windSpeed}} m/s\r\n            </td>\r\n\r\n        </tr>\r\n    </tbody>\r\n</table>"
 
 /***/ }),
 
 /***/ 175:
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<table class='table'>\r\n    <thead>\r\n        <th class='table-header cell'>City</th>\r\n        <th class='table-header cell'>Country</th>\r\n        <th class='table-header cell'>Weather</th>\r\n        <th class='table-header cell'>Temp.</th>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor='let location of locationsList.data; let i=index;' \r\n           \r\n            [class.selected]=\"areObjectsEqual(location,currentLocation)\" \r\n            (click)='chooseLocation(location)'\r\n            class='table-row row'>\r\n\r\n            <td class='cell'>\r\n                {{location.city}}\r\n            </td>\r\n            <td class='cell'>\r\n                {{location.country}}\r\n            </td>\r\n            <td class='cell'>\r\n                 <div *ngIf=\"list[i]\"> <app-icon [size]='iconSize' [icon]='list[i].icon'></app-icon> </div>\r\n            </td>\r\n            <td class='cell'>\r\n                 <div *ngIf=\"list[i]\"> {{list[i].temperature}}&deg; C </div>\r\n            </td>\r\n\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<div class='button' (click)='saveLocation()'>\r\n    +\r\n</div>\r\n<div class='button' (click)='deleteLocation()'>\r\n    -\r\n</div>"
+module.exports = "<div class='weather-icon__wrapper weather-icon__wrapper_{{size}}'>\n    <div class='weather-icon__icon weather-icon__icon_{{size}}' ngClass='{{icon+\"_\"+size}}'>\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 176:
 /***/ (function(module, exports) {
 
-module.exports = "<header class='block'>\r\n    Weather Forecast\r\n</header>\r\n<div *ngIf='state.location' class='app__current-location block'>\r\n    {{state.location.city}}, {{state.location.country}}\r\n</div>\r\n\r\n<app-location \r\n    [isLocationChanged]='state.isLocationChanged' \r\n    (changeLocation)='handleNewLocation($event)'></app-location>\r\n<div class='app__location-storage section'>\r\n    <div class='location-storage__header' (click)='toggleLocationsList()'>Locations Storage, ({{state.locationsList.data.length}}/7)</div>\r\n    <app-locations-list *ngIf='state.isLocationsListOpened && state.locationsList' \r\n        (setCurrentLocation)='handleLocationFromStorage($event)' \r\n        (getLocationsList)='getLocationsList()'\r\n        [weatherList]='state.weatherList'\r\n        [currentLocation]='state.location'\r\n        [locationsList]='state.locationsList'>\r\n    </app-locations-list>\r\n</div>\r\n\r\n<div class='weather'>\r\n    <div class='weather__section section'>\r\n        <app-weather *ngIf='state.isWeatherLoaded' [currentWeather]='state.weather.currently' ></app-weather>\r\n    </div>\r\n    <div class='weather__section section'>\r\n        <app-forecast   *ngIf='state.isWeatherLoaded' [dailyForecast]='state.weather.daily'></app-forecast>\r\n    </div>\r\n</div>\r\n<footer class='block'>\r\n    <a href=\"https://darksky.net/poweredby/\" target=\"_blank\">\r\n        <div class='footer-img'></div>\r\n    </a>\r\n</footer>\r\n<div *ngIf=\"state.isLoadingShown\">\r\n    <app-loading></app-loading>\r\n</div>\r\n<div class = \"app__error-message\" *ngIf=\"state.error.message\">\r\n    {{this.state.error.message}}\r\n    <button class=\"error-message__btn\" (click)='actionOnError()'>{{this.state.error.actionBtnText}}</button>\r\n</div>"
+module.exports = "<div class='loading'>\n    <span class='loading__message'>Loading...</span>\n</div>"
 
 /***/ }),
 
 /***/ 177:
 /***/ (function(module, exports) {
 
+module.exports = "<div class='location-container'>\r\n\r\n    <button class='location-item' *ngIf='isLocationChanged' (click)='loadCurrentLocation()'>Back to current Location</button>\r\n    <div class='location-item'>\r\n        <button class='inline' (click)='changeEditMode()'>Change Location</button>\r\n        <app-autocomplete class='inline' *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>\r\n        </app-autocomplete>\r\n    </div>\r\n</div>"
+
+/***/ }),
+
+/***/ 178:
+/***/ (function(module, exports) {
+
+module.exports = "<table class='table'>\r\n    <thead>\r\n        <th class='table__header table__cell'>City</th>\r\n        <th class='table__header table__cell'>Country</th>\r\n        <th class='table__header table__cell'>Weather</th>\r\n        <th class='table__header table__cell'>Temp.</th>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor='let location of locationsList.data; let i=index;' \r\n            [class.table__row_selected]=\"areObjectsEqual(location,currentLocation)\" \r\n            (click)='chooseLocation(location)'\r\n            class='table__row'>\r\n\r\n            <td class='table__cell'>\r\n                {{location.city}}\r\n            </td>\r\n            <td class='table__cell'>\r\n                {{location.country}}\r\n            </td>\r\n            <td class='table__cell'>\r\n                 <div *ngIf=\"weatherList[i]\"> \r\n                     <app-icon [size]='iconSize' [icon]='weatherList[i].icon'>\r\n                    </app-icon>\r\n                 </div>\r\n            </td>\r\n            <td class='table__cell'>\r\n                 <div *ngIf=\"weatherList[i]\"> {{weatherList[i].temperature}}&deg; C </div>\r\n            </td>\r\n\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<button class='button' [disabled]='locationsList.data.length >=7' (click)='saveLocation()'>\r\n    Add\r\n</button>\r\n<button class='button' [disabled]='locationsList.data.length <=0'(click)='deleteLocation()'>\r\n    Remove\r\n</button>"
+
+/***/ }),
+
+/***/ 179:
+/***/ (function(module, exports) {
+
+module.exports = "<header class='block'>\r\n    Weather Forecast\r\n</header>\r\n\r\n<div *ngIf='state.location' class='app__current-location block'>\r\n    {{state.location.city}}, {{state.location.country}}\r\n</div>\r\n\r\n<app-location \r\n    [isLocationChanged]='state.isLocationChanged' \r\n    (changeLocation)='handleNewLocation($event)'>\r\n</app-location>\r\n\r\n<div class='app__location-storage section'>\r\n    <div class='location-storage__header' (click)='toggleLocationsList()'>{{state.isLocationsListOpened? \"Collapse \":\"Expand \"}} Locations Storage ({{state.locationsList.data.length}}/7) </div>\r\n    <app-locations-list *ngIf='state.isLocationsListOpened && state.locationsList' \r\n        (setCurrentLocation)='handleLocationFromStorage($event)' \r\n        (getLocationsList)='getLocationsList()'\r\n        [weatherList]='state.weatherList'\r\n        [currentLocation]='state.location'\r\n        [locationsList]='state.locationsList'>\r\n    </app-locations-list>\r\n</div>\r\n\r\n<div class='weather'>\r\n    <div class='weather__section section'>\r\n        <app-weather *ngIf='state.isWeatherLoaded' [currentWeather]='state.weather.currently' ></app-weather>\r\n    </div>\r\n    <div class='weather__section section'>\r\n        <app-forecast   *ngIf='state.isWeatherLoaded' [dailyForecast]='state.weather.daily'></app-forecast>\r\n    </div>\r\n</div>\r\n\r\n<app-loading  *ngIf=\"state.isLoadingShown\"></app-loading>\r\n\r\n <app-error-message class='app__error' *ngIf=\"state.error.message\"  \r\n    [errorMessage]=\"state.error.message\"  \r\n    [actionBtnMessage]=\"state.error.actionBtnText\"\r\n    (action)=\"actionOnError()\">\r\n</app-error-message>\r\n\r\n<footer class='block'>\r\n    <a href=\"https://darksky.net/poweredby/\" target=\"_blank\">\r\n        <div class='footer-img'></div>\r\n    </a>\r\n</footer>\r\n\r\n\r\n"
+
+/***/ }),
+
+/***/ 180:
+/***/ (function(module, exports) {
+
 module.exports = "<div class='block'>\r\n    <p class='info info-small'>\r\n        TODAY\r\n    </p>\r\n    <app-icon [size]='iconSize' [icon]='weather.icon'></app-icon>\r\n    <span class='info info-very-large'>  {{weather.summary}}</span>\r\n</div>\r\n<div class='block'>\r\n    <div class='info info-very-large'>\r\n        {{weather.temperature}}&deg; С\r\n    </div>\r\n</div>\r\n<div class='info info-large block'>\r\n    {{weather.pressure}} mm Hg\r\n\r\n</div>\r\n<div class='info info-large block'>\r\n    {{weather.windSpeed}} m/s {{weather.windBearing}}\r\n</div>"
 
 /***/ }),
 
-/***/ 202:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "darksky.7021f77ca79d47c7c171.png";
 
 /***/ }),
 
-/***/ 204:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(86);
@@ -1061,7 +1136,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(107);
 
 
 
@@ -1089,7 +1164,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var AppComponent = (function () {
     function AppComponent() {
-        this.background = "black";
+        this.background = "grey";
     }
     AppComponent.prototype.getBg = function (bg) {
         this.background = bg;
@@ -1099,8 +1174,8 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'app-root',
-        template: __webpack_require__(169),
-        styles: [__webpack_require__(160)]
+        template: __webpack_require__(171),
+        styles: [__webpack_require__(161)]
     })
 ], AppComponent);
 
@@ -1119,15 +1194,16 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__location_location_component__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__weather_weather_component__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__forecast_forecast_component__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__main_main_component__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__location_location_component__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__weather_weather_component__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__forecast_forecast_component__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__main_main_component__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__autocomplete_autocomplete_component__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_google_place_autocomplete__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__icon_icon_component__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__loading_loading_component__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__locations_list_locations_list_component__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__icon_icon_component__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__loading_loading_component__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__locations_list_locations_list_component__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__error_message_error_message_component__ = __webpack_require__(99);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1135,6 +1211,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1167,7 +1244,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_11__autocomplete_autocomplete_component__["a" /* AutocompleteComponent */],
             __WEBPACK_IMPORTED_MODULE_13__icon_icon_component__["a" /* IconComponent */],
             __WEBPACK_IMPORTED_MODULE_14__loading_loading_component__["a" /* LoadingComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__locations_list_locations_list_component__["a" /* LocationsListComponent */]
+            __WEBPACK_IMPORTED_MODULE_15__locations_list_locations_list_component__["a" /* LocationsListComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__error_message_error_message_component__["a" /* ErrorMessageComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
@@ -1238,8 +1316,8 @@ __decorate([
 AutocompleteComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'app-autocomplete',
-        template: __webpack_require__(170),
-        styles: [__webpack_require__(161)],
+        template: __webpack_require__(172),
+        styles: [__webpack_require__(162)],
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* ElementRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* NgZone */]) === "function" && _b || Object])
 ], AutocompleteComponent);
@@ -1254,7 +1332,7 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForecastComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ErrorMessageComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1265,109 +1343,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ForecastComponent = (function () {
-    function ForecastComponent() {
-        this.forecast = [];
-        this.iconSize = 'small';
+var ErrorMessageComponent = (function () {
+    function ErrorMessageComponent() {
+        this.action = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* EventEmitter */]();
     }
-    ForecastComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.dailyForecast.data.map(function (item) {
-            var windBearing = item.windBearing || -1;
-            var windBearingString = windBearing < 0 ? '' :
-                windBearing < 23 ? 'N' :
-                    windBearing < 68 ? 'NE' :
-                        windBearing < 113 ? 'E' :
-                            windBearing < 158 ? 'SE' :
-                                windBearing < 203 ? 'S' :
-                                    windBearing < 248 ? 'SW' :
-                                        windBearing < 293 ? 'W' :
-                                            windBearing < 338 ? 'NW' :
-                                                'N';
-            var date = new Date(item.time * 1000);
-            var day = {
-                time: date.toDateString().slice(0, 10),
-                temperatureMax: Math.round(item.temperatureMax),
-                temperatureMin: Math.round(item.temperatureMin),
-                pressure: Math.round(item.pressure * 0.75),
-                summary: item.summary,
-                icon: item.icon,
-                precipProbability: Math.round(item.precipProbability * 100),
-                windBearing: windBearingString,
-                windSpeed: Math.round(item.windSpeed)
-            };
-            _this.forecast.push(day);
-        });
+    ErrorMessageComponent.prototype.ngOnInit = function () {
     };
-    return ForecastComponent;
+    ErrorMessageComponent.prototype.doAction = function () {
+        this.action.emit();
+    };
+    return ErrorMessageComponent;
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["O" /* Input */])(),
+    __metadata("design:type", String)
+], ErrorMessageComponent.prototype, "actionBtnMessage", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["O" /* Input */])(),
+    __metadata("design:type", String)
+], ErrorMessageComponent.prototype, "errorMessage", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* Output */])(),
     __metadata("design:type", Object)
-], ForecastComponent.prototype, "dailyForecast", void 0);
-ForecastComponent = __decorate([
+], ErrorMessageComponent.prototype, "action", void 0);
+ErrorMessageComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'app-forecast',
-        template: __webpack_require__(171),
-        styles: [__webpack_require__(162)]
+        selector: 'app-error-message',
+        template: __webpack_require__(173),
+        styles: [__webpack_require__(163)]
     }),
     __metadata("design:paramtypes", [])
-], ForecastComponent);
+], ErrorMessageComponent);
 
-// apparentTemperature
-// :
-// 19.88   // in celcey degrees
-// cloudCover
-// :  покрытие облаками в процентах
-// 0.27
-// dewPoint точка росы??
-// :
-// 14.99
-// humidity  туманность
-// :
-// 0.73
-// icon
-// :
-// "partly-cloudy-day"
-// ozone
-// :
-// 285.89  
-// precipIntensity
-// :
-// 0
-// precipProbability
-// :
-// 0
-// pressure
-// :
-// 1016.06
-// summary
-// :
-// "Partly Cloudy"
-// temperature
-// :
-// 19.88
-// time
-// :
-// 1502092013
-// uvIndex
-// :
-// 4
-// visibility
-// :
-// 10.01
-// windBearing
-// :
-// 347
-// windGust
-// :
-// 5.32
-// windSpeed
-// :
-// 2.99 
-//# sourceMappingURL=forecast.component.js.map
+//# sourceMappingURL=error-message.component.js.map
 
 /***/ })
 
-},[204]);
+},[207]);
 //# sourceMappingURL=main.bundle.js.map

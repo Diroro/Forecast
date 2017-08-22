@@ -20,13 +20,6 @@ export class LocationsListComponent implements OnInit {
     constructor(private lss: LocationStorageService) { }
 
     ngOnInit() {
-        this.weatherList.map(weather => {
-            let cityWeather = {
-                temperature: Math.round(weather.temperature),
-                icon: weather.icon
-            }
-            this.list.push(cityWeather);
-        })
     }
 
     saveLocation() {
@@ -42,13 +35,12 @@ export class LocationsListComponent implements OnInit {
     }
 
     deleteLocation() {
-
         if (this.lss.getLocationIndex(this.currentLocation) >= 0) {
             this.lss.deleteLocation(this.currentLocation);
             this.getLocationsList.emit();
         }
     }
-
+    
     areObjectsEqual(o1, o2) {
         if (o1 && o2)
             return this.lss.areObjectsEqual(o1, o2)

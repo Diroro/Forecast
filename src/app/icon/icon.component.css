@@ -1,107 +1,111 @@
-.weather-icon{
-    vertical-align: middle;
-    display: inline-block;
-}
-.weather-icon-wrapper{
+
+.weather-icon__wrapper{
    
     display: inline-block;
     background: white;
     border-color: rgba(0, 0, 0, 0);
 
 }
-.icon-small{
-    height: 30px;
-    width: 30px;
-}
 
-.wrapper-small{
+.weather-icon__wrapper_small{
     border-radius: 6px;
     padding:3px;
 }
-
-.clear-night-small{
-    background: rgba(0, 0, 0, 0) url("../../images/moon.svg") no-repeat scroll center center / 30px auto;
- 
-}
-
-.clear-day-small{
-     background:  url("../../images/sun.svg") no-repeat scroll center center / 30px auto;
- 
-}
-
-.fog-small{
-     background: rgba(0, 0, 0, 0) url("../../images/mist.svg") no-repeat scroll center center / 30px auto;
- 
-}
-.rain-small{
-     background: rgba(0, 0, 0, 0) url("../../images/rain.svg") no-repeat scroll center center / 30px auto;
- 
-}
-.snow-small{
-     background: rgba(0, 0, 0, 0) url("../../images/snow.svg") no-repeat scroll center center / 30px auto;
- 
-}
-.wind-small{
-     background: rgba(0, 0, 0, 0) url("../../images/wind.svg") no-repeat scroll center center / 30px auto;
- 
-}
-.cloudy-small{
-     background: rgba(0, 0, 0, 0) url("../../images/clouds.svg") no-repeat scroll center center / 30px auto;
-}
-.partly-cloudy-night-small{
-    background: rgba(0, 0, 0, 0) url("../../images/moon-clouds.svg") no-repeat scroll center center / 30px auto;
- 
-}
-
-.partly-cloudy-day-small{
-     background: rgba(0, 0, 0, 0) url("../../images/sun-clouds.svg") no-repeat scroll center center / 30px auto;
- 
-}
-.icon-large{
-    height: 70px;
-    width: 70px;
-}
-
-.wrapper-large{
+.weather-icon__wrapper_large{
     border-radius: 14px;
     padding:7px;
 }
 
-.clear-night-large{
+.weather-icon__icon{
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.weather-icon__icon_small{
+    height: 30px;
+    width: 30px;
+}
+
+.weather-icon__icon_large{
+    height: 70px;
+    width: 70px;
+}
+
+.clear-night_small{
+    background: rgba(0, 0, 0, 0) url("../../images/moon.svg") no-repeat scroll center center / 30px auto;
+ 
+}
+
+.clear-day_small{
+     background:  url("../../images/sun.svg") no-repeat scroll center center / 30px auto;
+ 
+}
+
+.fog_small{
+     background: rgba(0, 0, 0, 0) url("../../images/mist.svg") no-repeat scroll center center / 30px auto;
+ 
+}
+.rain_small{
+     background: rgba(0, 0, 0, 0) url("../../images/rain.svg") no-repeat scroll center center / 30px auto;
+ 
+}
+.snow_small{
+     background: rgba(0, 0, 0, 0) url("../../images/snow.svg") no-repeat scroll center center / 30px auto;
+ 
+}
+.wind_small{
+     background: rgba(0, 0, 0, 0) url("../../images/wind.svg") no-repeat scroll center center / 30px auto;
+ 
+}
+.cloudy_small{
+     background: rgba(0, 0, 0, 0) url("../../images/clouds.svg") no-repeat scroll center center / 30px auto;
+}
+.partly-cloudy-night_small{
+    background: rgba(0, 0, 0, 0) url("../../images/moon-clouds.svg") no-repeat scroll center center / 30px auto;
+ 
+}
+
+.partly-cloudy-day_small{
+     background: rgba(0, 0, 0, 0) url("../../images/sun-clouds.svg") no-repeat scroll center center / 30px auto;
+ 
+}
+
+
+.clear-night_large{
     background: rgba(0, 0, 0, 0) url("../../images/moon.svg") no-repeat scroll center center / 70px auto;
  
 }
 
-.clear-day-large{
+.clear-day_large{
      background:  url("../../images/sun.svg") no-repeat scroll center center / 70px auto;
  
 }
 
-.fog-large{
+.fog_large{
      background: rgba(0, 0, 0, 0) url("../../images/mist.svg") no-repeat scroll center center / 70px auto;
  
 }
-.rain-large{
+.rain_large{
      background: rgba(0, 0, 0, 0) url("../../images/rain.svg") no-repeat scroll center center / 70px auto;
  
 }
-.snow-large{
+.snow_large{
      background: rgba(0, 0, 0, 0) url("../../images/snow.svg") no-repeat scroll center center / 70px auto;
  
 }
-.wind-large{
+.wind_large{
      background: rgba(0, 0, 0, 0) url("../../images/wind.svg") no-repeat scroll center center / 70px auto;
  
 }
-.cloudy-large{
+.cloudy_large{
      background: rgba(0, 0, 0, 0) url("../../images/clouds.svg") no-repeat scroll center center / 70px auto;
 }
-.partly-cloudy-night-large{
+.partly-cloudy-night_large{
     background: rgba(0, 0, 0, 0) url("../../images/moon-clouds.svg") no-repeat scroll center center / 70px auto;
  
 }
 
-.partly-cloudy-day-large{
+.partly-cloudy-day_large{
      background: rgba(0, 0, 0, 0) url("../../images/sun-clouds.svg") no-repeat scroll center center / 70px auto;
  
 }

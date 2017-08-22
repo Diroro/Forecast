@@ -53,6 +53,7 @@ footer{
 }
 .location-storage__header{
     padding:5px;
+    cursor:pointer;
 }
 @media screen and (max-width: 860px){ 
    .weather{
@@ -67,19 +68,4 @@ footer{
     }
 } 
 
-.app__error-message{
-    position: fixed;
-    top:0;
-    width:100%;
-    padding: 10px;
-    background-color: red;
-    color: white;
-    text-align: center;
-    font-family: 'PT Sans', sans-serif;
-}
-.error-message__btn{
-    font-size:20px;
-    border: none;
-    padding: 2px 5px;
 
-}
