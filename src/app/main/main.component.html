@@ -1,47 +1,47 @@
-<header class='block'>
+<header class="header block">
     Weather Forecast
 </header>
 
-<div *ngIf='state.location' class='app__current-location block'>
+<div *ngIf="state.location" class="current-location block">
     {{state.location.city}}, {{state.location.country}}
 </div>
 
-<app-location 
-    [isLocationChanged]='state.isLocationChanged' 
-    (changeLocation)='handleNewLocation($event)'>
+<app-location class="choose-location"
+    [isLocationCurrent]="state.isLocationCurrent" 
+    (changeLocation)="handleNewLocation($event)">
 </app-location>
 
-<div class='app__location-storage section'>
-    <div class='location-storage__header' (click)='toggleLocationsList()'>{{state.isLocationsListOpened? "Collapse ":"Expand "}} Locations Storage ({{state.locationsList.data.length}}/7) </div>
-    <app-locations-list *ngIf='state.isLocationsListOpened && state.locationsList' 
-        (setCurrentLocation)='handleLocationFromStorage($event)' 
-        (getLocationsList)='getLocationsList()'
-        [weatherList]='state.weatherList'
-        [currentLocation]='state.location'
-        [locationsList]='state.locationsList'>
+<div class="location-storage section">
+    <div class="location-storage__header" (click)="toggleLocationsList()">{{state.isLocationsListOpened? "Collapse ":"Expand "}} Locations Storage ({{state.locationsList.data.length}}/7) </div>
+    <app-locations-list *ngIf="state.isLocationsListOpened && state.locationsList" 
+        (setCurrentLocation)="handleLocationFromStorage($event)" 
+        (getLocationsList)="getLocationsList()"
+        [weatherList]="state.weatherList"
+        [currentLocation]="state.location"
+        [locationsList]="state.locationsList">
     </app-locations-list>
 </div>
 
-<div class='weather'>
-    <div class='weather__section section'>
-        <app-weather *ngIf='state.isWeatherLoaded' [currentWeather]='state.weather.currently' ></app-weather>
+<div class="weather">
+    <div class="weather__section section">
+        <app-weather *ngIf="state.isWeatherLoaded" [currentWeather]="state.weather.currently" ></app-weather>
     </div>
-    <div class='weather__section section'>
-        <app-forecast   *ngIf='state.isWeatherLoaded' [dailyForecast]='state.weather.daily'></app-forecast>
+    <div class="weather__section section">
+        <app-forecast   *ngIf="state.isWeatherLoaded" [dailyForecast]="state.weather.daily"></app-forecast>
     </div>
 </div>
 
-<app-loading  *ngIf="state.isLoadingShown"></app-loading>
+<app-loading class="loading" *ngIf="state.isLoadingShown"></app-loading>
 
- <app-error-message class='app__error' *ngIf="state.error.message"  
+ <app-error-message class="error" *ngIf="state.error.message"  
     [errorMessage]="state.error.message"  
     [actionBtnMessage]="state.error.actionBtnText"
     (action)="actionOnError()">
 </app-error-message>
 
-<footer class='block'>
+<footer class="footer block">
     <a href="https://darksky.net/poweredby/" target="_blank">
-        <div class='footer-img'></div>
+        <div class="footer__img"></div>
     </a>
 </footer>
 

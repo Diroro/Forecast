@@ -8,8 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class WeatherComponent implements OnInit {
 
     @Input() currentWeather;
-    iconSize = 'large';
-    weather;
+    public iconSize = 'large';
+    public weather = null
     constructor() { }
     ngOnInit() {
          let windBearing = this.currentWeather.windBearing || -1;

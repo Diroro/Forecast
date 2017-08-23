@@ -4,25 +4,25 @@
 	margin: 0;
     padding: 0;
 }
-header{
+.header{
     color: white;
     font-size:20px;
     margin-top: 10px;
 }
-footer{
+.footer{
     position:absolute;
     bottom: 0;
     height:50px;
     border-color: rgba(0, 0, 0, 0);
 }
-.footer-img{
+.footer__img{
     background: rgba(0,0,0,0) url("../../images/darksky.png")  center center / auto 50px ;
     height: 50px;
     width:200px;
     display: inline-block;
     vertical-align: middle;
 }
-.app__current-location{
+.current-location{
     font-size:40px;
 }
 .block {
@@ -39,15 +39,13 @@ footer{
     font-family: 'PT Sans', sans-serif;
     background-color: rgba(0,0,0,0.2);
 }
-.weather__section,.app__location-storage{
-  
-}
+
 .weather{
     display:flex;
     justify-content: space-between;
 }
 
-.app__location-storage{
+.location-storage{
     color:white;
     text-align: center;
 }

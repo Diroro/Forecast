@@ -166,7 +166,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 var LocationComponent = (function () {
-    // location: Object;
     function LocationComponent() {
         this.isEditModeOn = false;
         this.changeLocation = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* EventEmitter */]();
@@ -183,7 +182,7 @@ var LocationComponent = (function () {
     LocationComponent.prototype.handleChangingLocation = function (location) {
         this.changeLocation.emit(location);
         this.changeEditMode();
-        this.isLocationChanged = true;
+        this.isLocationCurrent = false;
     };
     return LocationComponent;
 }());
@@ -194,7 +193,7 @@ __decorate([
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["O" /* Input */])(),
     __metadata("design:type", Boolean)
-], LocationComponent.prototype, "isLocationChanged", void 0);
+], LocationComponent.prototype, "isLocationCurrent", void 0);
 LocationComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'app-location',
@@ -212,7 +211,7 @@ LocationComponent = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__location_storage_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocationsListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -285,9 +284,9 @@ LocationsListComponent = __decorate([
         selector: 'app-locations-list',
         template: __webpack_require__(178),
         styles: [__webpack_require__(168)],
-        providers: [__WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__["a" /* LocationStorageService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__["a" /* LocationStorageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__["a" /* LocationStorageService */]) === "function" && _a || Object])
 ], LocationsListComponent);
 
 var _a;
@@ -299,9 +298,9 @@ var _a;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__location_storage_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__weather_service__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__current_location_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_weather_service__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_current_location_service__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(1);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MainComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -328,7 +327,7 @@ var MainComponent = (function () {
             weather: null,
             weatherList: [],
             isLocationsListOpened: null,
-            isLocationCurrent: true,
+            isLocationCurrent: false,
             isWeatherLoaded: false,
             isLoadingShown: false,
             error: {
@@ -363,6 +362,7 @@ var MainComponent = (function () {
     };
     MainComponent.prototype.loadCurrentLocation = function () {
         var _this = this;
+        this.state.isLocationCurrent = true;
         this.cls.getCurrentLocation()
             .then(function (location) {
             _this.state.location = location;
@@ -459,9 +459,9 @@ MainComponent = __decorate([
         selector: 'app-main',
         template: __webpack_require__(179),
         styles: [__webpack_require__(169)],
-        providers: [__WEBPACK_IMPORTED_MODULE_1__weather_service__["a" /* WeatherService */], __WEBPACK_IMPORTED_MODULE_2__current_location_service__["a" /* CurrentLocationService */], __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_1__services_weather_service__["a" /* WeatherService */], __WEBPACK_IMPORTED_MODULE_2__services_current_location_service__["a" /* CurrentLocationService */], __WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__["a" /* LocationStorageService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__weather_service__["a" /* WeatherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__weather_service__["a" /* WeatherService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__current_location_service__["a" /* CurrentLocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__current_location_service__["a" /* CurrentLocationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__location_storage_service__["a" /* LocationStorageService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_weather_service__["a" /* WeatherService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_weather_service__["a" /* WeatherService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_current_location_service__["a" /* CurrentLocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_current_location_service__["a" /* CurrentLocationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__["a" /* LocationStorageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__["a" /* LocationStorageService */]) === "function" && _c || Object])
 ], MainComponent);
 
 var _a, _b, _c;
@@ -488,6 +488,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var WeatherComponent = (function () {
     function WeatherComponent() {
         this.iconSize = 'large';
+        this.weather = null;
     }
     WeatherComponent.prototype.ngOnInit = function () {
         var windBearing = this.currentWeather.windBearing || -1;
@@ -555,7 +556,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "\r\n*{\r\n   \r\n\tbox-sizing: border-box;\r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.wrapper{    \r\n    display: inline-block;\r\n    width: 100%;\r\n    min-height: 100%; \r\n    min-width: 450px;\r\n    position: relative;\r\n    padding-bottom: 50px;\r\n}\r\n\r\n", ""]);
+exports.push([module.i, "\r\n*{\r\n\tbox-sizing: border-box;\r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.wrapper{    \r\n    display: inline-block;\r\n    width: 100%;\r\n    min-height: 100%; \r\n    min-width: 450px;\r\n    position: relative;\r\n    padding-bottom: 50px;\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -699,7 +700,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "\r\n* {\r\n    box-sizing: border-box; \r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\nheader{\r\n    color: white;\r\n    font-size:20px;\r\n    margin-top: 10px;\r\n}\r\nfooter{\r\n    position:absolute;\r\n    bottom: 0;\r\n    height:50px;\r\n    border-color: rgba(0, 0, 0, 0);\r\n}\r\n.footer-img{\r\n    background: rgba(0,0,0,0) url(" + __webpack_require__(205) + ")  center center / auto 50px;\r\n    height: 50px;\r\n    width:200px;\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n}\r\n.app__current-location{\r\n    font-size:40px;\r\n}\r\n.block {\r\n    font-family: 'PT Sans', sans-serif;\r\n\twidth: 100%;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.section{\r\n    border: 1px solid rgba(255,255,255,0.5); \r\n    border-radius: 5px;  \r\n    margin: 5px;\r\n    min-width:400px;\r\n    font-family: 'PT Sans', sans-serif;\r\n    background-color: rgba(0,0,0,0.2);\r\n}\r\n.weather__section,.app__location-storage{\r\n  \r\n}\r\n.weather{\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n}\r\n\r\n.app__location-storage{\r\n    color:white;\r\n    text-align: center;\r\n}\r\n.location-storage__header{\r\n    padding:5px;\r\n    cursor:pointer;\r\n}\r\n@media screen and (max-width: 860px){ \r\n   .weather{\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-align: stretch;\r\n        -ms-flex-align: stretch;\r\n            align-items: stretch;\r\n  \r\n}\r\n } \r\n   @media screen and (min-width: 860px) { \r\n    .weather__section{\r\n        width:50%;\r\n    }\r\n} \r\n\r\n\r\n", ""]);
+exports.push([module.i, "\r\n* {\r\n    box-sizing: border-box; \r\n\tmargin: 0;\r\n    padding: 0;\r\n}\r\n.header{\r\n    color: white;\r\n    font-size:20px;\r\n    margin-top: 10px;\r\n}\r\n.footer{\r\n    position:absolute;\r\n    bottom: 0;\r\n    height:50px;\r\n    border-color: rgba(0, 0, 0, 0);\r\n}\r\n.footer__img{\r\n    background: rgba(0,0,0,0) url(" + __webpack_require__(205) + ")  center center / auto 50px;\r\n    height: 50px;\r\n    width:200px;\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n}\r\n.current-location{\r\n    font-size:40px;\r\n}\r\n.block {\r\n    font-family: 'PT Sans', sans-serif;\r\n\twidth: 100%;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n.section{\r\n    border: 1px solid rgba(255,255,255,0.5); \r\n    border-radius: 5px;  \r\n    margin: 5px;\r\n    min-width:400px;\r\n    font-family: 'PT Sans', sans-serif;\r\n    background-color: rgba(0,0,0,0.2);\r\n}\r\n\r\n.weather{\r\n    display:-webkit-box;\r\n    display:-ms-flexbox;\r\n    display:flex;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n}\r\n\r\n.location-storage{\r\n    color:white;\r\n    text-align: center;\r\n}\r\n.location-storage__header{\r\n    padding:5px;\r\n    cursor:pointer;\r\n}\r\n@media screen and (max-width: 860px){ \r\n   .weather{\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-align: stretch;\r\n        -ms-flex-align: stretch;\r\n            align-items: stretch;\r\n  \r\n}\r\n } \r\n   @media screen and (min-width: 860px) { \r\n    .weather__section{\r\n        width:50%;\r\n    }\r\n} \r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -730,7 +731,7 @@ module.exports = module.exports.toString();
 /***/ 171:
 /***/ (function(module, exports) {
 
-module.exports = "<div [ngStyle]=\"{'background':background}\" class='wrapper'>\r\n    <app-main (bg)=getBg($event)></app-main>\r\n</div>\r\n\r\n"
+module.exports = "<div [ngStyle]=\"{'background':background}\" class='wrapper'>\r\n    <app-main (bg)=getBg($event)></app-main>\r\n</div>"
 
 /***/ }),
 
@@ -772,7 +773,7 @@ module.exports = "<div class='loading'>\n    <span class='loading__message'>Load
 /***/ 177:
 /***/ (function(module, exports) {
 
-module.exports = "<div class='location-container'>\r\n\r\n    <button class='location-item' *ngIf='isLocationChanged' (click)='loadCurrentLocation()'>Back to current Location</button>\r\n    <div class='location-item'>\r\n        <button class='inline' (click)='changeEditMode()'>Change Location</button>\r\n        <app-autocomplete class='inline' *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>\r\n        </app-autocomplete>\r\n    </div>\r\n</div>"
+module.exports = "<div class='location-container'>\r\n\r\n    <button class='location-item' *ngIf='!isLocationCurrent' (click)='loadCurrentLocation()'>Back to current Location</button>\r\n    <div class='location-item'>\r\n        <button class='inline' (click)='changeEditMode()'>Change Location</button>\r\n        <app-autocomplete class='inline' *ngIf='isEditModeOn' (setLocation)='handleChangingLocation($event)'>\r\n        </app-autocomplete>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -786,7 +787,7 @@ module.exports = "<table class='table'>\r\n    <thead>\r\n        <th class='tab
 /***/ 179:
 /***/ (function(module, exports) {
 
-module.exports = "<header class='block'>\r\n    Weather Forecast\r\n</header>\r\n\r\n<div *ngIf='state.location' class='app__current-location block'>\r\n    {{state.location.city}}, {{state.location.country}}\r\n</div>\r\n\r\n<app-location \r\n    [isLocationChanged]='state.isLocationChanged' \r\n    (changeLocation)='handleNewLocation($event)'>\r\n</app-location>\r\n\r\n<div class='app__location-storage section'>\r\n    <div class='location-storage__header' (click)='toggleLocationsList()'>{{state.isLocationsListOpened? \"Collapse \":\"Expand \"}} Locations Storage ({{state.locationsList.data.length}}/7) </div>\r\n    <app-locations-list *ngIf='state.isLocationsListOpened && state.locationsList' \r\n        (setCurrentLocation)='handleLocationFromStorage($event)' \r\n        (getLocationsList)='getLocationsList()'\r\n        [weatherList]='state.weatherList'\r\n        [currentLocation]='state.location'\r\n        [locationsList]='state.locationsList'>\r\n    </app-locations-list>\r\n</div>\r\n\r\n<div class='weather'>\r\n    <div class='weather__section section'>\r\n        <app-weather *ngIf='state.isWeatherLoaded' [currentWeather]='state.weather.currently' ></app-weather>\r\n    </div>\r\n    <div class='weather__section section'>\r\n        <app-forecast   *ngIf='state.isWeatherLoaded' [dailyForecast]='state.weather.daily'></app-forecast>\r\n    </div>\r\n</div>\r\n\r\n<app-loading  *ngIf=\"state.isLoadingShown\"></app-loading>\r\n\r\n <app-error-message class='app__error' *ngIf=\"state.error.message\"  \r\n    [errorMessage]=\"state.error.message\"  \r\n    [actionBtnMessage]=\"state.error.actionBtnText\"\r\n    (action)=\"actionOnError()\">\r\n</app-error-message>\r\n\r\n<footer class='block'>\r\n    <a href=\"https://darksky.net/poweredby/\" target=\"_blank\">\r\n        <div class='footer-img'></div>\r\n    </a>\r\n</footer>\r\n\r\n\r\n"
+module.exports = "<header class=\"header block\">\r\n    Weather Forecast\r\n</header>\r\n\r\n<div *ngIf=\"state.location\" class=\"current-location block\">\r\n    {{state.location.city}}, {{state.location.country}}\r\n</div>\r\n\r\n<app-location class=\"choose-location\"\r\n    [isLocationCurrent]=\"state.isLocationCurrent\" \r\n    (changeLocation)=\"handleNewLocation($event)\">\r\n</app-location>\r\n\r\n<div class=\"location-storage section\">\r\n    <div class=\"location-storage__header\" (click)=\"toggleLocationsList()\">{{state.isLocationsListOpened? \"Collapse \":\"Expand \"}} Locations Storage ({{state.locationsList.data.length}}/7) </div>\r\n    <app-locations-list *ngIf=\"state.isLocationsListOpened && state.locationsList\" \r\n        (setCurrentLocation)=\"handleLocationFromStorage($event)\" \r\n        (getLocationsList)=\"getLocationsList()\"\r\n        [weatherList]=\"state.weatherList\"\r\n        [currentLocation]=\"state.location\"\r\n        [locationsList]=\"state.locationsList\">\r\n    </app-locations-list>\r\n</div>\r\n\r\n<div class=\"weather\">\r\n    <div class=\"weather__section section\">\r\n        <app-weather *ngIf=\"state.isWeatherLoaded\" [currentWeather]=\"state.weather.currently\" ></app-weather>\r\n    </div>\r\n    <div class=\"weather__section section\">\r\n        <app-forecast   *ngIf=\"state.isWeatherLoaded\" [dailyForecast]=\"state.weather.daily\"></app-forecast>\r\n    </div>\r\n</div>\r\n\r\n<app-loading class=\"loading\" *ngIf=\"state.isLoadingShown\"></app-loading>\r\n\r\n <app-error-message class=\"error\" *ngIf=\"state.error.message\"  \r\n    [errorMessage]=\"state.error.message\"  \r\n    [actionBtnMessage]=\"state.error.actionBtnText\"\r\n    (action)=\"actionOnError()\">\r\n</app-error-message>\r\n\r\n<footer class=\"footer block\">\r\n    <a href=\"https://darksky.net/poweredby/\" target=\"_blank\">\r\n        <div class=\"footer__img\"></div>\r\n    </a>\r\n</footer>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -812,63 +813,7 @@ module.exports = __webpack_require__(86);
 
 /***/ }),
 
-/***/ 51:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrentLocationService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var CurrentLocationService = (function () {
-    function CurrentLocationService(http) {
-        this.http = http;
-        this.url = 'https://freegeoip.net/json/';
-        this.googleApiKey = 'AIzaSyCqG7y5llTsyfBpPppRZQt7O1mJmpCeXQ8';
-    }
-    CurrentLocationService.prototype.getCurrentLocation = function () {
-        return this.http
-            .get(this.url)
-            .toPromise()
-            .then(function (response) {
-            var resp = response.json();
-            return {
-                city: resp.city,
-                country: resp.country_name,
-                lat: resp.latitude,
-                lng: resp.longitude
-            };
-        })
-            .catch(this.handleError);
-    };
-    CurrentLocationService.prototype.handleError = function () { };
-    ;
-    return CurrentLocationService;
-}());
-CurrentLocationService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object])
-], CurrentLocationService);
-
-var _a;
-//# sourceMappingURL=current-location.service.js.map
-
-/***/ }),
-
-/***/ 52:
+/***/ 32:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -884,16 +829,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var Location = (function () {
-    function Location() {
-    }
-    return Location;
-}());
-var LocationList = (function () {
-    function LocationList() {
-    }
-    return LocationList;
-}());
 var LocationStorageService = (function () {
     function LocationStorageService() {
     }
@@ -958,6 +893,64 @@ LocationStorageService = __decorate([
 
 /***/ }),
 
+/***/ 52:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrentLocationService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var CurrentLocationService = (function () {
+    function CurrentLocationService(http) {
+        this.http = http;
+        this.url = 'https://freegeoip.net/json/';
+        this.googleApiKey = 'AIzaSyCqG7y5llTsyfBpPppRZQt7O1mJmpCeXQ8';
+    }
+    CurrentLocationService.prototype.getCurrentLocation = function () {
+        return this.http
+            .get(this.url)
+            .toPromise()
+            .then(function (response) {
+            var resp = response.json();
+            return {
+                city: resp.city,
+                country: resp.country_name,
+                lat: resp.latitude,
+                lng: resp.longitude
+            };
+        })
+            .catch(this.handleError);
+    };
+    CurrentLocationService.prototype.handleError = function (error) {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
+    };
+    return CurrentLocationService;
+}());
+CurrentLocationService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object])
+], CurrentLocationService);
+
+var _a;
+//# sourceMappingURL=current-location.service.js.map
+
+/***/ }),
+
 /***/ 53:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -979,32 +972,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// import 'rxjs/add/operator/map';
-var CurrentlyDataPointObject = (function () {
-    function CurrentlyDataPointObject() {
-    }
-    return CurrentlyDataPointObject;
-}());
-var DailyDataPointObject = (function () {
-    function DailyDataPointObject() {
-    }
-    return DailyDataPointObject;
-}());
-var DailyDataBlockObject = (function () {
-    function DailyDataBlockObject() {
-    }
-    return DailyDataBlockObject;
-}());
-var CurrentAndDailyWeather = (function () {
-    function CurrentAndDailyWeather() {
-    }
-    return CurrentAndDailyWeather;
-}());
-var CurrentWeather = (function () {
-    function CurrentWeather() {
-    }
-    return CurrentWeather;
-}());
 var WeatherService = (function () {
     function WeatherService(jsonp) {
         this.jsonp = jsonp;
@@ -1033,7 +1000,8 @@ var WeatherService = (function () {
     };
     WeatherService.prototype.getCurrentWeatherForList = function (list) {
         var _this = this;
-        return Promise.all(list.map(function (location) { return _this.getCurrentWeather(location.lat, location.lng).then(function (weather) { return weather.currently; }); }));
+        return Promise.all(list.map(function (location) { return _this.getCurrentWeather(location.lat, location.lng)
+            .then(function (weather) { return weather.currently; }); }));
     };
     WeatherService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
@@ -1187,23 +1155,24 @@ AppComponent = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__weather_service__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__current_location_service__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__location_location_component__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__weather_weather_component__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__forecast_forecast_component__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__main_main_component__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__autocomplete_autocomplete_component__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_google_place_autocomplete__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__icon_icon_component__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__loading_loading_component__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__locations_list_locations_list_component__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__error_message_error_message_component__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_weather_service__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_current_location_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__location_location_component__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__weather_weather_component__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__forecast_forecast_component__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__main_main_component__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__autocomplete_autocomplete_component__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ng2_google_place_autocomplete__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__icon_icon_component__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__loading_loading_component__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__locations_list_locations_list_component__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__error_message_error_message_component__ = __webpack_require__(99);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1228,34 +1197,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
     return AppModule;
 }());
 AppModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["b" /* NgModule */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["b" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__location_location_component__["a" /* LocationComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__weather_weather_component__["a" /* WeatherComponent */],
-            __WEBPACK_IMPORTED_MODULE_9__forecast_forecast_component__["a" /* ForecastComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__main_main_component__["a" /* MainComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__autocomplete_autocomplete_component__["a" /* AutocompleteComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__icon_icon_component__["a" /* IconComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__loading_loading_component__["a" /* LoadingComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__locations_list_locations_list_component__["a" /* LocationsListComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__error_message_error_message_component__["a" /* ErrorMessageComponent */]
+            __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__location_location_component__["a" /* LocationComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__weather_weather_component__["a" /* WeatherComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__forecast_forecast_component__["a" /* ForecastComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__main_main_component__["a" /* MainComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__autocomplete_autocomplete_component__["a" /* AutocompleteComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__icon_icon_component__["a" /* IconComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__loading_loading_component__["a" /* LoadingComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__locations_list_locations_list_component__["a" /* LocationsListComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__error_message_error_message_component__["a" /* ErrorMessageComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_http__["a" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_12_ng2_google_place_autocomplete__["a" /* GooglePlaceModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* JsonpModule */]
+            __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_http__["a" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_13_ng2_google_place_autocomplete__["a" /* GooglePlaceModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* JsonpModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_1__current_location_service__["a" /* CurrentLocationService */], __WEBPACK_IMPORTED_MODULE_0__weather_service__["a" /* WeatherService */]],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_2__services_current_location_service__["a" /* CurrentLocationService */], __WEBPACK_IMPORTED_MODULE_1__services_weather_service__["a" /* WeatherService */], __WEBPACK_IMPORTED_MODULE_0__services_location_storage_service__["a" /* LocationStorageService */]],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 

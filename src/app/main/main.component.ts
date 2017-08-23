@@ -1,6 +1,6 @@
-import { LocationStorageService } from './../location-storage.service';
-import { WeatherService } from './../weather.service';
-import { CurrentLocationService } from './../current-location.service';
+import { LocationStorageService } from './../services/location-storage.service';
+import { WeatherService } from './../services/weather.service';
+import { CurrentLocationService } from './../services/current-location.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 @Component({
     selector: 'app-main',
@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
         weather: null,
         weatherList: [],
         isLocationsListOpened: null,
-        isLocationCurrent: true,
+        isLocationCurrent: false,
         isWeatherLoaded: false,
         isLoadingShown: false,
         error: {
@@ -57,6 +57,7 @@ export class MainComponent implements OnInit {
     }
 
     loadCurrentLocation() {
+        this.state.isLocationCurrent=true;
         this.cls.getCurrentLocation()
             .then((location: any) => {
                 this.state.location = location;
@@ -125,7 +126,7 @@ export class MainComponent implements OnInit {
     toggleLocationsList() {
         this.state.isLocationsListOpened = !this.state.isLocationsListOpened;
     }
-    
+
     getBackgroundByKey(weather) {
         const sun = 'linear-gradient(to top, #e85a8a, #faae56)';
         const moon = 'linear-gradient(to top, #141e30, #243b55)';

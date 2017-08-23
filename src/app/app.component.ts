@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    background= "grey";
-    getBg(bg){
-        this.background=bg;
+    background = "grey";
+    getBg(bg) {
+        this.background = bg;
     }
 }

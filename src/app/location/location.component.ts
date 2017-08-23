@@ -1,4 +1,4 @@
-import { CurrentLocationService } from './../current-location.service';
+import { CurrentLocationService } from './../services/current-location.service';
 import { Component, OnInit, Output, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -9,13 +9,13 @@ import { Component, OnInit, Output, Input, EventEmitter, ChangeDetectorRef } fro
 })
 export class LocationComponent implements OnInit {
     isEditModeOn = false;
-    // location: Object;
     constructor() {
 
     }
     @Output() changeLocation = new EventEmitter();
-    @Input() isLocationChanged: boolean;
+    @Input() isLocationCurrent: boolean;
     ngOnInit() {
+       
     }
    
     changeEditMode() {
@@ -30,6 +30,6 @@ export class LocationComponent implements OnInit {
     handleChangingLocation(location) {
         this.changeLocation.emit(location);
         this.changeEditMode();
-        this.isLocationChanged = true;
+        this.isLocationCurrent = false;
     }
 }

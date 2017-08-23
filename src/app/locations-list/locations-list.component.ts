@@ -1,4 +1,4 @@
-import { LocationStorageService } from './../location-storage.service';
+import { LocationStorageService } from './../services/location-storage.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({

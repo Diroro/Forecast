@@ -1,5 +1,6 @@
-import { WeatherService } from './weather.service';
-import { CurrentLocationService } from './current-location.service';
+import { LocationStorageService } from './services/location-storage.service';
+import { WeatherService } from './services/weather.service';
+import { CurrentLocationService } from './services/current-location.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -37,7 +38,7 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
         GooglePlaceModule,
         JsonpModule
     ],
-    providers: [CurrentLocationService, WeatherService],
+    providers: [CurrentLocationService, WeatherService, LocationStorageService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

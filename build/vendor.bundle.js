@@ -11,7 +11,7 @@ webpackJsonp([3,4],[
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
 /* unused harmony export Class */
 /* unused harmony export createPlatform */
@@ -15553,7 +15553,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var isFunction_1 = __webpack_require__(81);
 var Subscription_1 = __webpack_require__(28);
 var Observer_1 = __webpack_require__(74);
-var rxSubscriber_1 = __webpack_require__(49);
+var rxSubscriber_1 = __webpack_require__(50);
 /**
  * Implements the {@link Observer} interface and extends the
  * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -26813,7 +26813,8 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["d" /* Version */]
 /* 45 */,
 /* 46 */,
 /* 47 */,
-/* 48 */
+/* 48 */,
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26828,7 +26829,7 @@ var Subscriber_1 = __webpack_require__(16);
 var Subscription_1 = __webpack_require__(28);
 var ObjectUnsubscribedError_1 = __webpack_require__(198);
 var SubjectSubscription_1 = __webpack_require__(182);
-var rxSubscriber_1 = __webpack_require__(49);
+var rxSubscriber_1 = __webpack_require__(50);
 /**
  * @class SubjectSubscriber<T>
  */
@@ -26987,7 +26988,7 @@ exports.AnonymousSubject = AnonymousSubject;
 //# sourceMappingURL=Subject.js.map
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27003,7 +27004,7 @@ exports.$$rxSubscriber = exports.rxSubscriber;
 //# sourceMappingURL=rxSubscriber.js.map
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28168,7 +28169,6 @@ GooglePlaceService = __decorate([
 //# sourceMappingURL=ng2-google-place.service.js.map
 
 /***/ }),
-/* 51 */,
 /* 52 */,
 /* 53 */,
 /* 54 */,
@@ -62695,7 +62695,7 @@ var platformBrowserDynamic = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ng2_google_place_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ng2_google_place_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GooglePlaceDirective; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -62911,7 +62911,7 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng2_google_place_directive__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ng2_google_place_service__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ng2_google_place_service__ = __webpack_require__(51);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GooglePlaceModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -63266,7 +63266,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(48);
+var Subject_1 = __webpack_require__(49);
 var Observable_1 = __webpack_require__(5);
 var Subscriber_1 = __webpack_require__(16);
 var Subscription_1 = __webpack_require__(28);
@@ -64200,7 +64200,7 @@ exports.MulticastOperator = MulticastOperator;
 "use strict";
 
 var multicast_1 = __webpack_require__(194);
-var Subject_1 = __webpack_require__(48);
+var Subject_1 = __webpack_require__(49);
 function shareSubjectFactory() {
     return new Subject_1.Subject();
 }
@@ -64437,7 +64437,7 @@ exports.isPromise = isPromise;
 "use strict";
 
 var Subscriber_1 = __webpack_require__(16);
-var rxSubscriber_1 = __webpack_require__(49);
+var rxSubscriber_1 = __webpack_require__(50);
 var Observer_1 = __webpack_require__(74);
 function toSubscriber(nextOrObserver, error, complete) {
     if (nextOrObserver) {
