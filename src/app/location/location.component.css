@@ -5,7 +5,7 @@
 	margin: 0;
     padding: 0;
 }
-.location-container{
+.location{
     width: 100%;
     display:flex;
     flex-direction: column;
@@ -14,31 +14,27 @@
     padding: 10px;
     font-family: 'PT Sans', sans-serif;
 }
-.current-location{
-    font-size: 36px;
-}
 
-.location-item{
+.location_item{
      color: white;
      margin: 5px;
     line-height: 30px;
 }
-.inline{
+.choose-location__item{
     display: inline-block;
-    color: white;
 }
-button{
-    display:block;
+.button{
+    color: white;
     background: transparent;
     border:0 none;
     font-size: 20px;
     padding: 0 5px;
     cursor:pointer;
 }
-button:hover{
+.button:hover{
     text-decoration: underline;
     
 }
-button:focus{
+.button:focus{
    outline:none;
 }
