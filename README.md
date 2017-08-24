@@ -2,6 +2,8 @@
 
 - It includes following sections: Location, Locations List, Current Weather and Forecast.
 
+- User can search a location by entering first letters of the desired city (google maps api is used), weather will be loaded right after choosing a location.
+
 - User can save chosen location in localStorage. 
 
 - If user choose a location from the storage and close the application, this location will be loaded after opening the app again.
