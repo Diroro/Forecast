@@ -10,5 +10,5 @@
 
 - If user choose a current location or location from the search (not presented in the storage), the current location (based on IP address) will be chosen and weather for it will be loaded.
 
-Demo:
+Deployed app:
 https://diroro.github.io/Forecast/build/
