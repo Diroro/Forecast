@@ -9,3 +9,6 @@
 - If user choose a location from the storage and close the application, this location will be loaded after opening the app again.
 
 - If user choose a current location or location from the search (not presented in the storage), the current location (based on IP address) will be chosen and weather for it will be loaded.
+
+Demo:
+https://diroro.github.io/Forecast/build/
